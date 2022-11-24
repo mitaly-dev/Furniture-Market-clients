@@ -10,7 +10,7 @@ const Category = ({category}) => {
             <div className="absolute bottom-10 left-10 ">
                 <h2 className="text-white font-semibold capitalize text-2xl font-jost ">{categoryName}</h2>
                 <Link
-                to="/"
+                to={`/products/${categoryName}`}
                 aria-label=""
                 className="block font-medium px-5 py-2 bg-[#BBCED5] mt-4"
               >

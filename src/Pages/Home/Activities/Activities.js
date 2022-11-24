@@ -21,7 +21,7 @@ const Activities = () => {
 
     return (
         <section className=' px-20 py-28'>
-         <div className='grid grid-cols-4 gap-10'>
+         <div className='grid grid-cols-4 gap-5'>
            {
             
           activities.map(activity=><Activity key={activity._id} activity={activity}></Activity>)
