@@ -6,8 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from './Contexts/AuthProvider';
 import {
+  useQuery,
+  useMutation,
+  useQueryClient,
   QueryClient,
-  QueryClientProvider,
+  QueryClientProvider
 } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
