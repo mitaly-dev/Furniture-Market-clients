@@ -56,6 +56,19 @@ const Navbar = () => {
               Blog
             </Link>
         </li>
+        {
+          user && 
+          <li>
+          <Link
+            to="/dashboard"
+            aria-label="dashboard"
+            title="dashboard"
+            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+           Dashboard
+          </Link>
+      </li>
+        }
     
     </>
     return (

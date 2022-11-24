@@ -1,5 +1,6 @@
 import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
 import About from "../Pages/About/About";
 import Blog from "../Pages/Blog/Blog";
@@ -27,5 +28,12 @@ export const router = createBrowserRouter([
         loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/products/${params.categoryName}`),
         element:<PrivateRoute><Products></Products></PrivateRoute>}
     ]
+    },
+    {
+        path:'/dashboard',
+        element:<DashboardLayout></DashboardLayout>,
+        children:[
+            {path:'/myOrders',element}
+        ]
     }
 ])

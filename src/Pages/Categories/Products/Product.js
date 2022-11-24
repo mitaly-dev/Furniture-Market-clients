@@ -6,7 +6,10 @@ import BookingModal from './BookingModal';
 const Product = ({product}) => {
     const [optionOpen,setOptionOpen] = useState(false)
     const [bookingModalData,setBookingModalData]=useState(null)
-    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image} = product
+    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available} = product
+    if(!available){
+        return
+    }
     return (
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md font-jost">
         <div className="flex space-x-4 justify-between">
