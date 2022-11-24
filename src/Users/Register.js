@@ -5,9 +5,11 @@ import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 import { imageUpload } from '../API/imageUpload';
 import toast,{ Toaster } from 'react-hot-toast';
+import SocialLogin from './SocialLogin';
+import { dbUser } from '../API/user';
 
 const Register = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const {
         user,
@@ -20,6 +22,7 @@ const Register = () => {
       const name=data.name
       const email=data.email
       const password=data.password
+      const role=data.role
       const image=data.image[0]
 
       const formData = new FormData()
@@ -28,20 +31,35 @@ const Register = () => {
       imageUpload(formData)
       .then(data=>{
         if(data.success){
+            reset()
+            const photo =data.data.display_url
            createUser(email,password)
            .then(result=>{
-            console.log(result)
             const profile = {
-                name,email,password,image:data.data.display_url
+                displayName:name,
+                photoURL: photo
             }
             updateUserProfile(profile)
             .then(result=>{
-                console.log('update user')
-                navigate('/login')
+                const user = {
+                    name,
+                    email,
+                    image:photo,
+                    role:role}
+                dbUser(user)
+                .then(data=>{
+                    if(data.acknowledged){
+                        toast.success('Registration successfull',{duration:1200})
+                        logOut()
+                        navigate('/login')
+                    }
+                }
+                )
+                .catch(error=>console.log(error.message))
             })
             .catch(error=>console.error(error.message))
            })
-           .catch(error=>toast.error(error.message))
+           .catch(error=>toast.error(error.message,{duration:1200}))
         }
     })
     .catch(error=>console.error(error.message))
@@ -63,14 +81,11 @@ const Register = () => {
                     <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                        Register
                     </h3>
-                    <Link to="/register" className="mb-4 text-xl sm:text-center sm:mb-6 sm:text-xl italic text-primary">
-                        Create an account 
-                    </Link>
                   </div>
                   <form onSubmit={handleSubmit(createUserHandle)} className="space-y-6 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-1 text-sm">
                             <label htmlFor="name" className="block mb-1 font-medium text-[16px]">Name</label>
-                            <input {...register("name",{required:"Name is required!"})} type="text" placeholder="Name"  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
+                            <input {...register("name",{required:"Name is required!"})} type="text" placeholder="Name"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
                             {errors?.name && <p className='text-red-600'>{errors.name?.message}</p>}
                         </div>
                         <div className="space-y-1 text-sm">
@@ -78,7 +93,7 @@ const Register = () => {
                             <input {...register("email",{
                                 required:"Email is required",
                                 pattern:{value:/\S+@\S+\.\S+/,message:'Email is not valid!'}
-                                })} type="text" placeholder="Email" className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
+                                })} type="text" placeholder="Email" className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
                             {errors?.email && <p className='text-red-600'>{errors?.email.message}</p>}
                         </div>
                         <div className="space-y-1 text-sm">
@@ -92,18 +107,22 @@ const Register = () => {
                                 required:"Password is required!",
                                 pattern:{value:/(?=.*[!@#$&*])/,message:'password should be minimum one special character'},
                                 minLength:{value:6,message:'password should be must 6 characters'}
-                                })} type="password" placeholder="Password"  className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm" />
+                                })} type="password" placeholder="Password"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm" />
                             {errors?.password && <p className='text-red-600'>{errors?.password.message}</p>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label htmlFor="role" className="block mb-1 font-medium text-[16px]">Select Role</label>
                             <div className='flex items-center space-x-6 w-full mt-1'>
-                             <input type="radio" {...register("role")} className="radio mr-2" value={'Buyer'} checked />Buyer
-                             <input type="radio" {...register("role")} style={{"margin-right": "10px"}} className="radio mr-[10px]" value={'seller'} />Seller
+                             <input type="radio" {...register("role")} className="radio mr-2" value={'buyer'} checked />Buyer
+                             <input type="radio" {...register("role")} style={{"marginRight": "10px"}} className="radio" value={'seller'} />Seller
                          </div>
                         </div>
                         <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary"> Register</button>
                     </form>
+                    <SocialLogin></SocialLogin>
+                    <Link to="/login" className="mb-4 sm:text-center sm:mb-6 italic  mt-5 inline-block text-lg">
+                        Already have an account ? <span className='text-primary'>Login</span>
+                    </Link>
                 </div>
               </div>
             </div>

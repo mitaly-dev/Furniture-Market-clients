@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 import { FaBeer, FaUser } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthProvider';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const {user,logOut} = useContext(AuthContext)
 
 
     const menu = <>
@@ -17,6 +19,16 @@ const Navbar = () => {
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Home
+            </Link>
+        </li>
+        <li>
+            <Link
+              to="/about"
+              aria-label="about"
+              title="about"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              About Us
             </Link>
         </li>
         <li>
@@ -56,17 +68,34 @@ const Navbar = () => {
           {menu}
         </ul>
         <ul className="flex items-center hidden space-x-8 lg:flex">
+         {
+          user?.uid ? 
+        <>
           <li>
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center h-12 px-3 font-medium tracking-wide"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Log In
-            </Link>
+          <button onClick={()=>logOut()} className="font-medium tracking-wide" >
+            Log Out
+          </button>
           </li>
-          <FaUser></FaUser>
+          <div className="avatar">
+              <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={user?.photoURL} alt="userImage" />
+              </div>
+          </div>
+        </> :
+        <>
+          <li>
+          <Link
+            to="/login"
+            className="font-medium tracking-wide"
+            aria-label="Sign up"
+            title="Sign up"
+          >
+            Log In
+          </Link>
+          </li>
+          <FaUser></FaUser> 
+        </>
+        }
         </ul>
         <div className="lg:hidden">
           <button
