@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
         jost: ["Jost", "sans-serif"],
       },
+      colors:{
+        primary:'#FD8311',
+        secondary:'#313D4D'
+      }
     },
   },
   plugins: [require("daisyui")],
