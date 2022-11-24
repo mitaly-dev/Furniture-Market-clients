@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const AdminOption = () => {
     return (
         <>
-        <li><Link>All Sellers</Link></li>
-        <li><Link>All Buyers</Link></li>
-        <li><Link>Reported Items</Link></li>
+        <li>
+            <NavLink to="/dashboard/allSellers" className={({isActive})=>isActive?'text-primary':'text-secondary'}>All Sellers</NavLink>
+        </li>
+        <li>
+            <NavLink to="/dashboard/allBuyers" className={({isActive})=>isActive?'text-primary':'text-secondary'}>All Buyers</NavLink>
+        </li>
+        <li>
+            <NavLink to="/dashboard/reportedItem" className={({isActive})=>isActive?'text-primary':'text-secondary'}>Reported Items</NavLink>
+        </li>
         </>
     );
 };

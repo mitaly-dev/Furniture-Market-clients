@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
-import { FaBeer, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 
@@ -9,6 +9,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {user,logOut} = useContext(AuthContext)
     const navigate = useNavigate()
+   
 
     const logOutHandle=()=>{
       logOut()
