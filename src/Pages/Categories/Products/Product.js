@@ -6,7 +6,7 @@ import BookingModal from './BookingModal';
 const Product = ({product}) => {
     const [optionOpen,setOptionOpen] = useState(false)
     const [bookingModalData,setBookingModalData]=useState(null)
-    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available} = product
+    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
     if(!available){
         return
     }
@@ -50,9 +50,13 @@ const Product = ({product}) => {
         <div>
             <img src={image} alt="" className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500" />
             <h2 className="mb-1 text-xl font-semibold capitalize">{title}</h2>
-            <p className=" dark:text-gray-400">Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud atqui apeirian...</p>
+            <p className=" dark:text-gray-400">
+                {
+                    description? description.split(0,200)+"..." : "Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud atqui apeirian..."
+                }           
+            </p>
         </div>
-        <div className="text-[17px] space-y-1">
+        <div className="text-[17px] space-y-1 capitalize">
             <p><span className='font-semibold'>Location :</span> {location}</p>
             <p><span className='font-semibold'>Years Of Purchase :</span> {yearsOfPurchase}</p>
             <p><span className='font-semibold'>Condition :</span> {condition}</p>

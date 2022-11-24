@@ -11,6 +11,7 @@ import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem/ReportedItem";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";
+import MyProducts from "../Pages/Dashboard/Sellers/MyProducts/MyProducts";
 import Home from "../Pages/Home/Home";
 import Login from "../Users/Login";
 import Register from "../Users/Register";
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
             {path:'/dashboard/allBuyers',element:<AllBuyers></AllBuyers>},
             {path:'/dashboard/reportedItem',element:<ReportedItem></ReportedItem>},
             {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
+            {path:'/dashboard/myProducts',element:<MyProducts></MyProducts>},
         ]
     }
 ])

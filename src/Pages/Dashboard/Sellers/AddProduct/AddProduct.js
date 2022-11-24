@@ -1,14 +1,18 @@
 import React from 'react';
 import toast,{ Toaster } from 'react-hot-toast';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from "moment";
+import { useContext } from 'react';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
+import { imageUpload } from '../../../../API/imageUpload';
 
 
 
 const AddProduct = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    // const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available} = product
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
     
     const time = moment().format("DD-MM-YYYY hh:mm:ss")
 
@@ -22,20 +26,47 @@ const AddProduct = () => {
         const phone = data.phone 
         const yearsOfPurchase = data.yearsOfPurchase 
         const condition = data.condition
-       
-        const product = {category,title,originalPrice,resalePrice,location,yearsOfPurchase,phone,condition,description,time,
-        available:true,
-        verified:true
-        }
+        const image = data.image[0]
 
-        console.log(product)
+        const formData = new FormData()
+        formData.append('image',image)
+
+        imageUpload(formData)
+        .then(data=>{
+            const image = data.data.display_url
+            const product = {category,title,originalPrice,resalePrice,location,yearsOfPurchase,phone,condition,         description,time,image,
+                available:true,
+                verified:true,
+                sellerEmail:user?.email,
+                sellerName:user?.displayName
+                }
+            if(data.success){
+                fetch(`${process.env.REACT_APP_PORT}/products`,{
+                    method:'POST',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify(product)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.acknowledged){
+                        reset()
+                        toast.success('Added product successfull',{duration:1200})
+                        navigate('/dashboard/myProducts')
+                    }
+                })
+                .catch(error=>console.log(error.message))
+            }
+        })
+        .catch(error=>console.log(error.message))
     }
 
     return (
         <div className='px-14'>
             <div className="bg-white rounded shadow-2xl p-7 sm:p-10 w-full">
                   <div className='mb-4'>
-                    <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+                    <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-10 sm:text-2xl">
                       Add a product
                     </h3>
                   </div>
