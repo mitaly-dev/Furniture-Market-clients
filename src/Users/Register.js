@@ -6,6 +6,7 @@ import { AuthContext } from '../Contexts/AuthProvider';
 import { imageUpload } from '../API/imageUpload';
 import toast,{ Toaster } from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
+import { jwtToken } from '../API/access-jwt-token';
 import { dbUser } from '../API/user';
 
 const Register = () => {
@@ -14,7 +15,6 @@ const Register = () => {
     const {
         user,
         createUser,
-        userSignIn,
         updateUserProfile,
         logOut} = useContext(AuthContext)
     
@@ -49,9 +49,16 @@ const Register = () => {
                 dbUser(user)
                 .then(data=>{
                     if(data.acknowledged){
-                        toast.success('Registration successfull',{duration:1200})
-                        logOut()
-                        navigate('/login')
+                        jwtToken(email)
+                        .then(data=>{
+                            if(data.accessToken){
+                                localStorage.setItem('furniture-token',data.accessToken)
+                                toast.success('Registration successfull',{duration:1200})
+                                logOut()
+                                navigate('/login')
+                            }
+                        })
+                        .catch(error=>console.error(error))
                     }
                 }
                 )

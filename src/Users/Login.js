@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 import toast,{ Toaster } from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
+import { jwtToken } from '../API/access-jwt-token';
 
 const Login = () => {
     const { register, handleSubmit,formState: { errors } } = useForm();
@@ -22,8 +23,15 @@ const Login = () => {
 
       userSignIn(email,password)
       .then(result=>{
-        toast.success('Login successfull',{duration:1200})
-        navigate(from,{replace:true})
+        jwtToken(email)
+        .then(data=>{
+            if(data.accessToken){
+                localStorage.setItem('furniture-token',data.accessToken)
+                toast.success('Login successfull',{duration:1200})
+                navigate(from,{replace:true})
+            }
+        })
+        .catch(error=>console.error(error))
       })
       .catch(error=>toast.error(error.message,{duration:1200}))
       

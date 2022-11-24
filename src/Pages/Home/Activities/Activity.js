@@ -3,7 +3,7 @@ import React from 'react';
 const Activity = ({activity}) => {
 
 const {icon,title,description} = activity
-    console.log(activity)
+   
     return (
         <div>
           <div className="flex items-start justify-center w-full mb-4 rounded-full font-jost">

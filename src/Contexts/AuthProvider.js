@@ -40,6 +40,8 @@ const AuthProvider = ({children}) => {
 
     // logout
     const logOut=()=>{
+        setLoading(true)
+        localStorage.removeItem('furniture-token')
         return signOut(auth)
     }
 

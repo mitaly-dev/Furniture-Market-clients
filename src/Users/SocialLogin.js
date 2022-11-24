@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { jwtToken } from '../API/access-jwt-token';
 import { dbUser } from '../API/user';
 import { AuthContext } from '../Contexts/AuthProvider';
 
@@ -22,8 +23,15 @@ const SocialLogin = ({from}) => {
             }
             dbUser(user)
             .then(data=>{
-                toast.success('SignIn with Goole successfull',{duration:1200})
-                navigate(from?(from,{replace:true}) : '/')
+                jwtToken(email)
+                .then(data=>{
+                    if(data.accessToken){
+                        localStorage.setItem('furniture-token',data.accessToken)
+                        toast.success('SignIn with Goole successfull',{duration:1200})
+                        navigate(from?(from,{replace:true}) : '/')
+                    }
+                })
+                .catch(error=>console.error(error))
             })
             .catch(error=>console.log(error))
         })

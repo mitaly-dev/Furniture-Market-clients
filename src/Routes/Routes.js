@@ -8,6 +8,7 @@ import Products from "../Pages/Categories/Products/Products";
 import Home from "../Pages/Home/Home";
 import Login from "../Users/Login";
 import Register from "../Users/Register";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
         {path:'/register',element:<Register></Register>},
         {path:'/products/:categoryName',
         loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/products/${params.categoryName}`),
-        element:<Products></Products>}
+        element:<PrivateRoute><Products></Products></PrivateRoute>}
     ]
     }
 ])

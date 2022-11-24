@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 import { FaBeer, FaUser } from 'react-icons/fa';
 import { useContext } from 'react';
@@ -8,7 +8,12 @@ import { AuthContext } from '../Contexts/AuthProvider';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {user,logOut} = useContext(AuthContext)
+    const navigate = useNavigate()
 
+    const logOutHandle=()=>{
+      logOut()
+      navigate('/')
+    }
 
     const menu = <>
         <li>
@@ -72,7 +77,7 @@ const Navbar = () => {
           user?.uid ? 
         <>
           <li>
-          <button onClick={()=>logOut()} className="font-medium tracking-wide" >
+          <button onClick={logOutHandle} className="font-medium tracking-wide text-[17px]" >
             Log Out
           </button>
           </li>
@@ -86,7 +91,7 @@ const Navbar = () => {
           <li>
           <Link
             to="/login"
-            className="font-medium tracking-wide"
+            className="font-medium tracking-wide text-[17px]"
             aria-label="Sign up"
             title="Sign up"
           >
