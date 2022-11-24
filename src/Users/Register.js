@@ -1,16 +1,51 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
+import { imageUpload } from '../API/imageUpload';
+import toast,{ Toaster } from 'react-hot-toast';
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const {
+        user,
+        createUser,
+        userSignIn,
+        updateUserProfile,
+        logOut} = useContext(AuthContext)
     
     const createUserHandle=(data)=>{
-      console.log(user)
-       
+      const name=data.name
+      const email=data.email
+      const password=data.password
+      const image=data.image[0]
+
+      const formData = new FormData()
+      formData.append('image',image)
+        
+      imageUpload(formData)
+      .then(data=>{
+        if(data.success){
+           createUser(email,password)
+           .then(result=>{
+            console.log(result)
+            const profile = {
+                name,email,password,image:data.data.display_url
+            }
+            updateUserProfile(profile)
+            .then(result=>{
+                console.log('update user')
+                navigate('/login')
+            })
+            .catch(error=>console.error(error.message))
+           })
+           .catch(error=>toast.error(error.message))
+        }
+    })
+    .catch(error=>console.error(error.message))
+
     }
     return (
         <div className="relative">

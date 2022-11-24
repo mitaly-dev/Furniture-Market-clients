@@ -31,6 +31,10 @@ const AuthProvider = ({children}) => {
 
     const value={
         user,
+        createUser,
+        userSignIn,
+        updateUserProfile,
+        logOut
     }
     return (
         <div>
