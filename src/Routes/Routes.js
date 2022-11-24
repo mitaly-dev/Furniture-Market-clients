@@ -1,11 +1,11 @@
+import { createBrowserRouter } from "react-router-dom";
+import Main from "../Layouts/Main";
 import Blog from "../Pages/Blog/Blog";
+import Categories from "../Pages/Categories/Categories";
+import Home from "../Pages/Home/Home";
+import Login from "../Users/Login";
+import Register from "../Users/Register";
 
-const { createBrowserRouter } = require("react-router-dom");
-const { default: Main } = require("../Layouts/Main");
-const { default: Categories } = require("../Pages/Categories/Categories");
-const { default: Home } = require("../Pages/Home");
-const { default: Login } = require("../Users/Login");
-const { default: Register } = require("../Users/Register");
 
 export const router = createBrowserRouter([
     {

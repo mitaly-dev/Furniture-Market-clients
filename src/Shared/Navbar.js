@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
+import { FaBeer, FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = () => {
     
     </>
     return (
-        <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 font-jost">
+        <div class="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 font-jost">
       <div class="relative flex items-center justify-between">
         <Link
           to="/"
@@ -57,14 +58,15 @@ const Navbar = () => {
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
-              to="/"
-              class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+              to="/login"
+              class="inline-flex items-center justify-center h-12 px-3 font-medium tracking-wide"
               aria-label="Sign up"
               title="Sign up"
             >
-              Sign up
+              Log In
             </Link>
           </li>
+          <FaUser></FaUser>
         </ul>
         <div class="lg:hidden">
           <button
