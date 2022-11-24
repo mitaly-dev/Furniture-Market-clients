@@ -54,7 +54,7 @@ const Navbar = () => {
     
     </>
     return (
-        <div className="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 font-jost">
+        <div className="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10 font-jost">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -62,7 +62,7 @@ const Navbar = () => {
           title="Company"
           className="inline-flex items-center"
         >
-          <img src={logo} alt="" />
+          <img src={logo} alt="" className='w-9/12'/>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex text-[16px] uppercase">
           {menu}

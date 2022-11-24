@@ -6,7 +6,7 @@ const Category = ({category}) => {
     const {category:categoryName,image,_id} = category
     return (
         <div className="w-full shadow-xl relative">
-            <figure className='h-[350px]'><img src={image} alt="Shoes" className='brightness-75 object-cover w-full h-full hover:scale-[1.1] ease-in duration-300' /></figure>
+            <figure className='h-[350px]'><img src={image} alt="Shoes" className='brightness-75 object-cover w-full h-full hover:scale-[1.1] ease-in duration-200' /></figure>
             <div className="absolute bottom-10 left-10 ">
                 <h2 className="text-white font-semibold capitalize text-2xl font-jost ">{categoryName}</h2>
                 <Link
