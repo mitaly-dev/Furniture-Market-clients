@@ -32,7 +32,7 @@ const DashboardLayout = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-14">
                     {
-                        role==='buyer' &&  <li><Link>My orders</Link></li>
+                        role==='buyer' &&  <BuyerOption></BuyerOption>
                     }
                     {
                         role==='seller' && <SellerOption></SellerOption>

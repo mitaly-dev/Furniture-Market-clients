@@ -9,9 +9,11 @@ import Products from "../Pages/Categories/Products/Products";
 import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem/ReportedItem";
+import MyOrders from "../Pages/Dashboard/Buyers/MyOrders/MyOrders";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";
 import MyProducts from "../Pages/Dashboard/Sellers/MyProducts/MyProducts";
+import Errorpage from "../Pages/Errorpage";
 import Home from "../Pages/Home/Home";
 import Login from "../Users/Login";
 import Register from "../Users/Register";
@@ -22,6 +24,7 @@ export const router = createBrowserRouter([
     {
     path:'/',
     element:<Main></Main>,
+    errorElement:<Errorpage></Errorpage>,
     children:[
         {path:'/',element:<Home></Home>},
         {path:'/home',element:<Home></Home>},
@@ -38,6 +41,7 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard',
         element:<DashboardLayout></DashboardLayout>,
+        errorElement:<Errorpage></Errorpage>,
         children:[
             {path:'/dashboard',element:<Dashboard></Dashboard>},
             {path:'/dashboard/allsellers',element:<AllSellers></AllSellers>},
@@ -45,6 +49,7 @@ export const router = createBrowserRouter([
             {path:'/dashboard/reportedItem',element:<ReportedItem></ReportedItem>},
             {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
             {path:'/dashboard/myProducts',element:<MyProducts></MyProducts>},
+            {path:'/dashboard/myOrders',element:<MyOrders></MyOrders>},
         ]
     }
 ])
