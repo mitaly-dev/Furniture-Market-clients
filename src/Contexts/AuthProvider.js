@@ -9,6 +9,7 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState('mitaly')
+    const [productRefetch,setProductRefetch] = useState()
     const [loading,setLoading] = useState(true)
     const auth = getAuth(app)
     const googleProvider = new GoogleAuthProvider()
@@ -62,7 +63,8 @@ const AuthProvider = ({children}) => {
         createUser,
         userSignIn,
         updateUserProfile,
-        logOut
+        logOut,
+        productRefetch,setProductRefetch
     }
     return (
         <div>

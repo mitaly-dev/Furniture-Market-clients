@@ -3,13 +3,19 @@ import {
     useQuery,
   } from '@tanstack/react-query'
 import Category from './Category';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Categories = () => {
-    const {data:categories=[],isError} = useQuery({
+  const {productRefetch,setProductRefetch} =  useContext(AuthContext)
+
+    const {data:categories=[],isError,refetch} = useQuery({
         queryKey:['categories'],
         queryFn:async()=>{
             const res = await fetch(`${process.env.REACT_APP_PORT}/categories`)
             const data = await res.json()
+            setProductRefetch(refetch)
             return data
         }
     })

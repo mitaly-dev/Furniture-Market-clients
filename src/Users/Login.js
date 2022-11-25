@@ -15,6 +15,7 @@ const Login = () => {
 
     const {
         userSignIn,
+        logOut
     } = useContext(AuthContext)
     
     const userSignInHandle=(data)=>{
@@ -29,6 +30,10 @@ const Login = () => {
                 localStorage.setItem('furniture-token',data.accessToken)
                 toast.success('Login successfull',{duration:1200})
                 navigate(from,{replace:true})
+            }
+            else{
+              toast.error(data.message)
+              logOut()
             }
         })
         .catch(error=>console.error(error))

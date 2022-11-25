@@ -6,14 +6,21 @@ import moment from "moment";
 import { useContext } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 import { imageUpload } from '../../../../API/imageUpload';
+import useRole from '../../../../Hook/useRole';
+import Spinner from '../../../../Components/Spinner';
 
 
 
 const AddProduct = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const {user} = useContext(AuthContext)
+    const [role,isRoleLoading,isVerify] = useRole(user?.email)
     const navigate = useNavigate()
-    
+
+    if(isRoleLoading){
+        return <Spinner></Spinner>
+    }
+
     const time = moment().format("DD-MM-YYYY hh:mm:ss")
 
     const addProductHandle=(data)=>{
@@ -36,10 +43,11 @@ const AddProduct = () => {
             const image = data.data.display_url
             const product = {category,title,originalPrice,resalePrice,location,yearsOfPurchase,phone,condition,         description,time,image,
                 available:true,
-                verified:true,
+                verified:isVerify,
                 sellerEmail:user?.email,
                 sellerName:user?.displayName
                 }
+               
             if(data.success){
                 fetch(`${process.env.REACT_APP_PORT}/products`,{
                     method:'POST',
@@ -80,7 +88,7 @@ const AddProduct = () => {
                         <div className="space-y-1 text-sm w-full">
                             <label htmlFor="category" className="block mb-1 font-medium text-[16px]">Select Category</label>
                             <select {...register("category",{required:"category is required!"})} className="select select-bordered outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm ">
-                                <option value="bedroom" selected>bedroom</option>
+                                <option value="bedroom" defaultValue="bedroom">bedroom</option>
                                 <option value="kitchen">kitchen</option>
                                 <option value="dining room">dining room</option>
                             </select>
@@ -135,7 +143,7 @@ const AddProduct = () => {
                             {errors?.description && <p className='text-red-600'>{errors.description?.message}</p>}
                         </div>
                     </div>
-                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary"> Login</button>
+                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary">Add Product</button>
                     </form>
             </div>
         </div>

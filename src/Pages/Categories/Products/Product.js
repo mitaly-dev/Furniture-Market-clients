@@ -1,16 +1,44 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { FaCartPlus, FaCross, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 import BookingModal from './BookingModal';
 
 const Product = ({product}) => {
+    const {productRefetch,setProductRefetch} = useContext(AuthContext)
     const [optionOpen,setOptionOpen] = useState(false)
     const [bookingModalData,setBookingModalData]=useState(null)
-    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
+    const {title,verify,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
+
     if(!available){
         return
     }
+
+
+    // const reportHandle=()=>{
+    //     fetch(`${process.env.REACT_APP_PORT}/products/${_id}`,{
+    //         method:'DELETE'
+    //     })
+    //     .then(res=>res.json())
+    //     .then(data=>console.log(data))
+    //     .catch(error=>console.log(error))
+    // }
+
+    const reportHandle=()=>{
+        fetch(`${process.env.REACT_APP_PORT}/products/report`,{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify()
+        })
+        .then(res=>res.json())
+        .then(data=>console.log(data))
+        .catch(error=>console.log(error))
+    }
+
     return (
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md font-jost bg-white">
         <div className="flex space-x-4 justify-between">
@@ -19,7 +47,7 @@ const Product = ({product}) => {
                 <div className='flex'>
                 <Link rel="noopener noreferrer" to="#" className=" font-semibold capitalize">{sellerName}</Link>
                 {
-                    verified && <img src="https://i.ibb.co/D8SPXJg/verified-2.png" alt="" className='w-4 h-4 ml-2' />
+                    verify && <img src="https://i.ibb.co/D8SPXJg/verified-2.png" alt="" className='w-4 h-4 ml-2' />
                 }
                 </div>
                 <span className="text-xs dark:text-gray-400">{time}</span>
@@ -42,7 +70,7 @@ const Product = ({product}) => {
                     optionOpen && <div className='absolute top-0 border right-7 rounded-lg bg-white p-5 w-48 text-center space-y-2'>
                     <button className='capitalize flex items-center'>
                     <FaHeart className='text-red-400 mr-4'></FaHeart>add to wishlist</button>
-                    <button className='capitalize flex items-center'>
+                    <button onClick={reportHandle} className='capitalize flex items-center'>
                     <span className='text-secondary mr-4 text-xl font-semibold'>x</span>Report to admin</button>
                 </div>
                 }
@@ -53,7 +81,7 @@ const Product = ({product}) => {
             <h2 className="mb-1 text-xl font-semibold capitalize">{title}</h2>
             <p className=" dark:text-gray-400">
                 {
-                    description? description.split(0,200)+"..." : "Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud atqui apeirian..."
+                    description? description.slice(0,120)+"..." : "Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud..."
                 }           
             </p>
         </div>
