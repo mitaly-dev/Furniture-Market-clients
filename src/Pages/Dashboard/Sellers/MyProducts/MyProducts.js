@@ -6,6 +6,7 @@ import {
 import { useContext } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 import Spinner from '../../../../Components/Spinner';
+import Product from './Product'
 
 const MyProducts = () => {
     const {user,loading} = useContext(AuthContext)
@@ -23,11 +24,13 @@ const MyProducts = () => {
         return <Spinner></Spinner>
     }
     return (
-        <div>
-           {
-            products.length
-           }
-        </div>
+        <div className="flex flex-col max-w-3xl m-auto p-6 space-y-4 sm:p-10 dark:bg-gray-900 dark:text-gray-100">
+        <ul className="flex flex-col divide-y divide-gray-700">
+        {
+            products.map(product=><Product key={product._id} product={product}></Product>)
+        }
+        </ul>
+    </div>
     );
 };
 

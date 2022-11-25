@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
@@ -10,6 +9,8 @@ import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem/ReportedItem";
 import MyOrders from "../Pages/Dashboard/Buyers/MyOrders/MyOrders";
+import Payment from "../Pages/Dashboard/Buyers/MyOrders/Payment.js/Payment";
+import WishList from "../Pages/Dashboard/Buyers/WishList/WishList";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";
 import MyProducts from "../Pages/Dashboard/Sellers/MyProducts/MyProducts";
@@ -35,7 +36,11 @@ export const router = createBrowserRouter([
         {path:'/register',element:<Register></Register>},
         {path:'/products/:categoryName',
         loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/products/${params.categoryName}`),
-        element:<PrivateRoute><Products></Products></PrivateRoute>}
+        element:<PrivateRoute><Products></Products></PrivateRoute>},
+        {path:'/payment',element:<Payment></Payment>},
+        {path:'/payment/:title',
+        loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/order/payment/${params.title}`),
+        element:<Payment></Payment>},
     ]
     },
     {
@@ -50,6 +55,7 @@ export const router = createBrowserRouter([
             {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
             {path:'/dashboard/myProducts',element:<MyProducts></MyProducts>},
             {path:'/dashboard/myOrders',element:<MyOrders></MyOrders>},
+            {path:'/dashboard/myWishList',element:<WishList></WishList>},
         ]
     }
 ])

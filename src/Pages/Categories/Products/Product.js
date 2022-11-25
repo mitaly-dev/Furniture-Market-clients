@@ -18,16 +18,6 @@ const Product = ({product}) => {
         return
     }
 
-
-    // const reportHandle=()=>{
-    //     fetch(`${process.env.REACT_APP_PORT}/products/${_id}`,{
-    //         method:'DELETE'
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>console.log(data))
-    //     .catch(error=>console.log(error))
-    // }
-
     const reportHandle=()=>{
         const product={
             image,

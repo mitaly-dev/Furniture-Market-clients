@@ -60,7 +60,7 @@ const BookingModal = ({product,setBookingModalData}) => {
                             </div>
                             <div className=" text-sm">
                                 <label className="block mb-1 font-medium text-[16px]">Price</label>
-                                <input {...register("price")} readOnly placeholder="Price" defaultValue={`$${resalePrice}`}  className="outline-none flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm text-lg" />
+                                <input {...register("price")} readOnly placeholder="Price" defaultValue={resalePrice}  className="outline-none flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm text-lg" />
                             </div>
                             <div className=" text-sm">
                                 <label className="block mb-1 font-medium text-[16px]">Phone</label>

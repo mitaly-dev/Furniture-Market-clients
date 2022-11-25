@@ -16,7 +16,7 @@ const Activities = () => {
     })
 
     return (
-        <section className='px-12 py-12'>
+        <section className='px-12 py-20'>
          <div className='grid grid-cols-4 gap-5'>
            {
           activities.map(activity=><Activity key={activity._id} activity={activity}></Activity>)

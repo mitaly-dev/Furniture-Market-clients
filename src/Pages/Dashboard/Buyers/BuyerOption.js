@@ -7,6 +7,9 @@ const BuyerOption = () => {
         <li>
             <NavLink to="/dashboard/myOrders" className={({isActive})=>isActive?'text-primary':'text-secondary'}>My Orders</NavLink>
         </li>
+        <li>
+            <NavLink to="/dashboard/myWishList" className={({isActive})=>isActive?'text-primary':'text-secondary'}>My WishList</NavLink>
+        </li>
       </>
     );
 };
