@@ -9,8 +9,8 @@ import { useLoaderData } from 'react-router-dom';
 const Products = () => {
     const products = useLoaderData()
     return (
-        <section className=' px-20 py-28'>
-        <div className='grid grid-cols-3 gap-5'>
+        <section className=' px-20 py-28 bg-[#FAF8F8]'>
+        <div className='grid grid-cols-3 gap-8'>
           {
            products.map(product=><Product key={product._id} product={product}></Product>)
           }

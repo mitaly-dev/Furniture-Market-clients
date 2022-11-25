@@ -1,17 +1,13 @@
 import React from 'react';
 import {
-    useQuery,
-    useMutation,
-    useQueryClient,
-    QueryClient,
-    QueryClientProvider,
+    useQuery
   } from '@tanstack/react-query'
 import Activity from './Activity';
 
 const Activities = () => {
 
-    const {data:activities=[],isError} = useQuery({
-        queryKey:['categories'],
+    const {data:activities=[]} = useQuery({
+        queryKey:['activities'],
         queryFn:async()=>{
             const res = await fetch(`${process.env.REACT_APP_PORT}/activities`)
             const data = await res.json()
@@ -20,10 +16,9 @@ const Activities = () => {
     })
 
     return (
-        <section className=' px-20 py-28'>
+        <section className='px-12 py-12'>
          <div className='grid grid-cols-4 gap-5'>
            {
-            
           activities.map(activity=><Activity key={activity._id} activity={activity}></Activity>)
            }
         </div>

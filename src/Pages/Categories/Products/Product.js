@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { FaCartPlus, FaCross, FaHeart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import BookingModal from './BookingModal';
 
 const Product = ({product}) => {
@@ -11,12 +12,12 @@ const Product = ({product}) => {
         return
     }
     return (
-        <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md font-jost">
+        <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md font-jost bg-white">
         <div className="flex space-x-4 justify-between">
             {/* <img alt="" src={image} className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" /> */}
             <div className="flex flex-col space-y-1">
                 <div className='flex'>
-                <a rel="noopener noreferrer" href="#" className=" font-semibold capitalize">{sellerName}</a>
+                <Link rel="noopener noreferrer" to="#" className=" font-semibold capitalize">{sellerName}</Link>
                 {
                     verified && <img src="https://i.ibb.co/D8SPXJg/verified-2.png" alt="" className='w-4 h-4 ml-2' />
                 }
