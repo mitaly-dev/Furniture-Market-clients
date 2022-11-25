@@ -10,7 +10,7 @@ const stripePromise = loadStripe(`${process.env.REACT_APP_PUBLISHABLE_KEY}`)
 
 const Payment = () => {
   const order = useLoaderData()
-  console.log(order)
+ 
     return (
         <div className="relative">
         <img

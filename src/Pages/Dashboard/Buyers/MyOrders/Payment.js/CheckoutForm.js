@@ -10,6 +10,7 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 
 const CheckoutForm = ({order}) => {
@@ -58,6 +59,8 @@ const CheckoutForm = ({order}) => {
         setCardError('')
       }
 
+      settransactionId("")
+      setsuccess('')
       const {paymentIntent,error:confirmError} = await stripe.confirmCardPayment(
         clientSecret,
         {
@@ -90,7 +93,6 @@ const CheckoutForm = ({order}) => {
        .then(res=>res.json())
        .then(data=>{
             if(data.acknowledged){
-                console.log(data)
                 toast.success('payment successfull',{duration:1200})
                 settransactionId(paymentIntent.id)
                 setsuccess('Congratulation your payment completed')
@@ -127,7 +129,7 @@ const CheckoutForm = ({order}) => {
         {
             cardError  && <p className='text-red-500 font-semibold font-jost'>{cardError}</p>
         }
-        <div className='text-[15px] mt-4 font-jost'>
+        <div className='text-[16px] mt-4 font-jost'>
         {
           success && <div>
             <p className='text-green-600'>{success}</p>
@@ -135,6 +137,9 @@ const CheckoutForm = ({order}) => {
           </div>
         }
        </div>
+       {
+        success && <Link to="">Go Back</Link>
+       }
        </>
     );
 };

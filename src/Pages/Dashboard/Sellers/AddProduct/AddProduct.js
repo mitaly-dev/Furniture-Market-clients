@@ -98,12 +98,12 @@ const AddProduct = () => {
                     <div className='flex gap-5'>
                         <div className="space-y-1 text-sm w-full">
                             <label htmlFor="originalPrice" className="block mb-1 font-medium text-[16px]">Original Price</label>
-                            <input {...register("originalPrice",{required:"Original Price is required!"})} type="" placeholder="original Price"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
+                            <input {...register("originalPrice",{required:"Original Price is required!"})} type="number" placeholder="original Price"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
                             {errors?.originalPrice && <p className='text-red-600'>{errors.originalPrice?.message}</p>}
                         </div>
                         <div className="space-y-1 text-sm w-full">
                             <label htmlFor="resalePrice" className="block mb-1 font-medium text-[16px]">Resale Price</label>
-                            <input {...register("resalePrice",{required:"Resale Price is required!"})} type="" placeholder="Resale Price"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
+                            <input {...register("resalePrice",{required:"Resale Price is required!"})} type="number" placeholder="Resale Price"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm " />
                             {errors?.resalePrice && <p className='text-red-600'>{errors.resalePrice?.message}</p>}
                         </div>
                     </div>

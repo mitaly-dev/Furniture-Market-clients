@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Order = ({order}) => {
-const {title,productImg,price,phone,name,location,email,category,_id} = order
+const {title,productImg,price,phone,name,location,email,category,_id,paid} = order
   
     return (
         <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
@@ -16,13 +16,20 @@ const {title,productImg,price,phone,name,location,email,category,_id} = order
                             </div>
                             <div className="text-right">
                                 <p className='text-xl font-semibold'>Price</p>
-                                <p className="text-lg font-semibold text-red-600">{price}</p>
+                                <p className="text-lg font-semibold text-red-600">${price}</p>
                             </div>
                         </div>
                         <div className='w-0'>
-                            <Link to={`/payment/${title}`} className="text-center bg-primary space-x-1 text-lg font-semibold py-2 px-10 text-white">
+                            {
+                                paid?
+                                <span to={`/payment/${title}`} className="text-center bg-orange-600 space-x-1 text-lg font-semibold py-2 px-10 text-white">
+                                Paid
+                                </span> :
+                                <Link to={`/payment/${title}`} className="text-center bg-primary space-x-1 text-lg font-semibold py-2 px-10 text-white">
                                 Pay
-                            </Link>
+                                </Link> 
+                            }
+                            
                         </div>
                     </div>
                 </div>

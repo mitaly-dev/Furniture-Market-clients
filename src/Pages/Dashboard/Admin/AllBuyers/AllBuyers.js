@@ -14,7 +14,9 @@ const AllBuyers = () => {
     })
 
     const deleteBuyer=(id)=>{
-        fetch(`${process.env.REACT_APP_PORT}/allbuyers/${id}`,{
+        const sure = window.confirm('are you sure you want to delete?')
+        if(sure){
+          fetch(`${process.env.REACT_APP_PORT}/allbuyers/${id}`,{
             method:"DELETE"
         })
         .then(res=>res.json())
@@ -24,6 +26,7 @@ const AllBuyers = () => {
             }
         })
         .catch(error=>console.log(error))
+        }
     }
 
 
