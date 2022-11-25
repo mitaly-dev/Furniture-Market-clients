@@ -1,16 +1,18 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaCartPlus, FaCross, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import BookingModal from './BookingModal';
 
 const Product = ({product}) => {
+    const {user} = useContext(AuthContext)
     const {productRefetch,setProductRefetch} = useContext(AuthContext)
     const [optionOpen,setOptionOpen] = useState(false)
     const [bookingModalData,setBookingModalData]=useState(null)
-    const {title,verify,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
+    const {title,verify,email,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
 
     if(!available){
         return
@@ -27,15 +29,59 @@ const Product = ({product}) => {
     // }
 
     const reportHandle=()=>{
-        fetch(`${process.env.REACT_APP_PORT}/products/report`,{
+        const product={
+            image,
+            title,
+            category,
+            userEmail:user?.email,
+            email,
+            sellerName,
+            resalePrice
+        }
+        fetch(`${process.env.REACT_APP_PORT}/reportedProduct`,{
             method:'POST',
             headers:{
                 'content-type':'application/json'
             },
-            body:JSON.stringify()
+            body:JSON.stringify(product)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            if(data.acknowledged){
+                toast.success('Report to admin successfull')
+            }
+            else{
+                toast.error(data.message,{duration:1200})
+            }
+        })
+        .catch(error=>console.log(error))
+    }
+    
+    const wishListHandle=()=>{
+        const product={
+            productImg:image,
+            title,
+            category,
+            price:resalePrice,
+            name : user?.displayName ,
+            email : user?.email,
+        }
+        fetch(`${process.env.REACT_APP_PORT}/wishList`,{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(product)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.acknowledged){
+                toast.success('wish product added successfull')
+            }
+            else{
+                toast.error(data.message,{duration:1200})
+            }
+        })
         .catch(error=>console.log(error))
     }
 
@@ -56,8 +102,8 @@ const Product = ({product}) => {
                 <button onClick={()=>setOptionOpen(!optionOpen)} type="button">
                     {
                         optionOpen? 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                        <path strokeLinecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg> : 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current">
                         <path d="M256,144a64,64,0,1,0-64-64A64.072,64.072,0,0,0,256,144Zm0-96a32,32,0,1,1-32,32A32.036,32.036,0,0,1,256,48Z"></path>
@@ -68,7 +114,7 @@ const Product = ({product}) => {
                 </button>
                 {
                     optionOpen && <div className='absolute top-0 border right-7 rounded-lg bg-white p-5 w-48 text-center space-y-2'>
-                    <button className='capitalize flex items-center'>
+                    <button onClick={wishListHandle} className='capitalize flex items-center'>
                     <FaHeart className='text-red-400 mr-4'></FaHeart>add to wishlist</button>
                     <button onClick={reportHandle} className='capitalize flex items-center'>
                     <span className='text-secondary mr-4 text-xl font-semibold'>x</span>Report to admin</button>

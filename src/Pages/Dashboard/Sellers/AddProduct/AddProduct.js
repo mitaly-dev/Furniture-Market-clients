@@ -44,7 +44,7 @@ const AddProduct = () => {
             const product = {category,title,originalPrice,resalePrice,location,yearsOfPurchase,phone,condition,         description,time,image,
                 available:true,
                 verified:isVerify,
-                sellerEmail:user?.email,
+                email:user?.email,
                 sellerName:user?.displayName
                 }
                

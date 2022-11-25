@@ -3,8 +3,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import toast from 'react-hot-toast';
-import { async } from '@firebase/util';
-import { useState } from 'react';
+
 
 const AllSellers = () => {
     const {data:sellers=[],refetch} = useQuery({
