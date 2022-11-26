@@ -4,6 +4,7 @@ import logo from '../assets/images/logo.png'
 import { FaUser } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
+import Topbar from './Topbar';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,7 +74,9 @@ const Navbar = () => {
     
     </>
     return (
-        <div className="py-2 mx-auto px-4 sm:px-10 lg:px-20 font-jost">
+      <>
+       <Topbar></Topbar>
+      <div className="py-2 mx-auto px-4 sm:px-10 lg:px-20 font-jost">
       <div className="relative flex items-center justify-between z-30">
         <Link
           to="/"
@@ -207,6 +210,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </>
     );
 };
 

@@ -2,8 +2,8 @@ import React from 'react';
 
 const Dashboard = () => {
     return (
-        <div>
-            <h3>wellcome</h3>
+        <div className='flex min-h-[60vh] justify-center items-center'>
+            <h3  className='text-primary text-6xl font-semibold'>wellcome</h3>
         </div>
     );
 };

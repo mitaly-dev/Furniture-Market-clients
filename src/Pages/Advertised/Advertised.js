@@ -6,28 +6,39 @@ import {
     QueryClient,
     QueryClientProvider,
   } from '@tanstack/react-query'
-import Category from '../Categories/Category';
+import Addvertise from './Addvertise';
+import Product from '../Categories/Products/Product';
+import { useEffect } from 'react';
+import SectionTitle from '../../Shared/SectionTitle';
+
 
 const Advertised = () => {
-    const {data:categories=[],isError} = useQuery({
-        queryKey:['categories'],
+    const {data:advertised=[],isError} = useQuery({
+        queryKey:['advertised'],
         queryFn:async()=>{
-            const res = await fetch(`${process.env.REACT_APP_PORT}/categories`)
+            const res = await fetch(`${process.env.REACT_APP_PORT}/advertised`)
             const data = await res.json()
             return data
         }
     })
+
+const content = {heads:"leasted",title:'advertise'}
     return (
-       <section className=' px-20 py-20 my-16 bg-[#0201010d]'>
+        <>
+       {
+        advertised.length>0 &&
+        <section className=' px-20 py-20 bg-[#0201010d]'>
         <div>
-            <h3 className='font-jost text-4xl text-center pb-16 font-semibold'>Advertised</h3>
+          <SectionTitle content={content}></SectionTitle>
         </div>
          <div className='grid grid-cols-3 gap-5'>
            {
-            categories.map(category=><Category key={category._id} category={category}></Category>)
+            advertised.map(advertise=><Product key={advertise._id} product={advertise}></Product>)
            }
         </div>
-       </section>
+       </section> 
+       }
+       </>
     );
 };
 

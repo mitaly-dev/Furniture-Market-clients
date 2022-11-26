@@ -1,40 +1,34 @@
 import React from 'react';
-import { FaCartPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import BannerItem from './BannerItem';
 
 const Banner = () => {
+    const bannerData = [
+        {
+            image:"https://i.ibb.co/rFSxhHZ/spacejoy-Rq-O6kwm4t-ZY-unsplash.jpg",
+            prev: 3,
+            id: 1,
+            next: 2
+        },
+        {
+            image: "https://i.ibb.co/McgcXpd/spacejoy-Yn-LJ3r-M4-Vt-I-unsplash.jpg",
+            prev: 1,
+            id: 2,
+            next: 3
+        },
+        {
+            image: "https://i.ibb.co/5MWh0z2/r-architecture-TRCJ-87-Yoh0-unsplash.jpg",
+            prev: 2,
+            id: 3,
+            next: 1
+        }
+    ]
+
     return (
-        <div className="relative">
-      <img
-        src="https://i.ibb.co/rFSxhHZ/spacejoy-Rq-O6kwm4t-ZY-unsplash.jpg"
-        className="absolute inset-0 object-cover w-full h-full"
-        alt=""
-      />
-      <div className="relative bg-gray-900 bg-opacity-50 min-h-[90vh] font-jost items-center flex px-4 sm:px-10 lg:px-20 ">
-        <div className="py-16 lg:py-20">
-          <div className="">
-            <div className="w-full max-w-xl text-white">
-              <h2 className=" mb-6 font-sans text-3xl font-bold tracking-tight sm:text-6xl sm:leading-none">
-                The furniture that <br></br>
-                defines you
-              </h2>
-              <p className=" mb-4 text-base md:text-2xl">
-              Your comfort and aesthetic design suitable for you is before anything else
-              </p>
-              <Link
-                to="/"
-                aria-label=""
-                className="inline-flex items-center font-semibold px-8 py-4 bg-primary text-xl mt-5"
-              >
-                <FaCartPlus className='mr-2'></FaCartPlus>
-                Shop Now
-                
-              </Link>
-            </div>
-          </div>
+        <div className="carousel w-full">
+            {
+                bannerData.map((banner,index)=><BannerItem key={index} banner={banner}></BannerItem>)
+            }
         </div>
-      </div>
-    </div>
     );
 };
 
