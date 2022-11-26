@@ -21,12 +21,13 @@ const Product = ({product,refetch}) => {
         .catch(error=>console.log(error.message))
        }
     }
-
+    
     const advertiseHandle=(id)=>{
         fetch(`${process.env.REACT_APP_PORT}/products/${id}`,{
             method:'PUT',
             headers:{
-                'content-type':'application/json'
+                'content-type':'application/json',
+                authorization:`Bearer ${localStorage.getItem('furniture-token')}`
             },
             body:JSON.stringify({advertise:true})
         })

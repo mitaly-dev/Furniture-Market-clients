@@ -27,7 +27,7 @@ const content = {heads:"leasted",title:'advertise'}
         <>
        {
         advertised.length>0 &&
-        <section className=' px-20 py-20 bg-[#0201010d]'>
+        <section className='px-20 py-20 bg-[#0201010d]'>
         <div>
           <SectionTitle content={content}></SectionTitle>
         </div>

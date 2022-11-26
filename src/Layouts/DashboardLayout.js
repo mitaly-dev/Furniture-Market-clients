@@ -32,10 +32,15 @@ const DashboardLayout = () => {
                 </div> 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-14">
-                   <li className='sm:hidden'>
-                   <label htmlFor="my-drawer-2" className="btn btn-sm btn-circle bg-primary mb-10">✕</label>
-                   </li>
+                    <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-14 font-jost">
+                    <li className='sm:hidden'>
+                    <label htmlFor="my-drawer-2" className="btn btn-sm btn-circle bg-primary mb-10">✕</label>
+                    </li>
+                    <li>
+                        <div>
+                        <img src={user?.photoURL} alt="" className='w-24 h-24 rounded-full object-cover' />
+                        </div>
+                    </li>
                     {
                         role==='buyer' &&  <BuyerOption></BuyerOption>
                     }
