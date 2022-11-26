@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const Product = ({product,refetch}) => {
@@ -14,16 +15,36 @@ const Product = ({product,refetch}) => {
         .then(res=>res.json())
         .then(data=>{
             if(data.deletedCount>0){
-                console.log(data)
                 refetch()
             }
         })
         .catch(error=>console.log(error.message))
        }
     }
+
+    const advertiseHandle=(id)=>{
+        fetch(`${process.env.REACT_APP_PORT}/products/${id}`,{
+            method:'PUT',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({advertise:true})
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.acknowledged){
+                toast.success('Advertise added successfull',{duration:1200})
+            }
+            else{
+                toast.error(data.message,{duration:1200})
+            }
+        })
+        .catch(error=>toast.error(error.message,{duration:1200}))
+    }
+
     return (
         <li className="flex flex-col py-6 sm:flex-row sm:justify-between font-jost">
-        <div className="flex w-full space-x-2 sm:space-x-4">
+        <div className="sm:flex w-full space-x-2 sm:space-x-4">
             <div className='relative'>
             <img className="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500" src={image} alt="product" />
                 {
@@ -54,7 +75,7 @@ const Product = ({product,refetch}) => {
                     </div>
                 </div>
                 <div className='flex items-center justify-between gap-5 w-full'>
-                    <button className="text-center bg-primary space-x-1 text-lg font-semibold py-1 px-5 text-white">
+                    <button onClick={()=>advertiseHandle(_id)} className="text-center bg-primary space-x-1 text-lg font-semibold py-1 px-5 text-white">
                     Advertise
                     </button>
                     <button onClick={()=>deleteProductHandle(_id)} type="button" className="flex items-center space-x-1 bg-primary text-white py-2 px-5">

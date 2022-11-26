@@ -84,7 +84,7 @@ const CheckoutForm = ({order}) => {
     }
       if(paymentIntent.status==='succeeded'){
        fetch(`${process.env.REACT_APP_PORT}/payments`,{
-        method:'POST',
+        method:'PUT',
         headers:{
             'content-type':'application/json'
         },

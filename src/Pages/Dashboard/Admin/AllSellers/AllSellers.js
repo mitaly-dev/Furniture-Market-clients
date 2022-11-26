@@ -3,9 +3,11 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import toast from 'react-hot-toast';
-
+import { useContext } from 'react';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const AllSellers = () => {
+  const {logOut} = useContext(AuthContext)
     const {data:sellers=[],refetch} = useQuery({
         queryKey:['allsellers'],
         queryFn:async()=>{
@@ -28,12 +30,13 @@ const AllSellers = () => {
         })
         .catch(error=>console.log(error))
     }
-
+    
     const verifyHandle=(email)=>{
       fetch(`${process.env.REACT_APP_PORT}/users/verify?email=${email}`,{
         method:'PUT',
         headers:{
-          'content-type':'application/json'
+          'content-type':'application/json',
+          authorization:`Bearer ${localStorage.getItem('furniture-token')}`
         },
         body:JSON.stringify({verify:true})
       })
@@ -43,12 +46,19 @@ const AllSellers = () => {
           toast.success('verify successfull',{duration:1200})
           refetch()
         }
+        else{
+          toast.error(data.message,{duration:1200})
+          logOut()
+        }
       })
-      .catch(error=>toast.error(error.message,{duration:1200}))
+      .catch(error=>{
+        console.log(error.message)
+        toast.error(error.message,{duration:1200})
+      })
     }
 
     return  (
-        <div className="overflow-x-auto px-14">
+        <div className="overflow-x-auto px-4 sm:px-12">
         <table className="table rounded-lg w-full border-2 border-primary">
           <thead>
             <tr className='text-xl'>

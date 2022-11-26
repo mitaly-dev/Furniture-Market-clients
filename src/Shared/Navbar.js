@@ -73,15 +73,15 @@ const Navbar = () => {
     
     </>
     return (
-        <div className="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10 font-jost">
-      <div className="relative flex items-center justify-between">
+        <div className="py-2 mx-auto px-4 sm:px-10 lg:px-20 font-jost">
+      <div className="relative flex items-center justify-between z-30">
         <Link
           to="/"
           aria-label="Company"
           title="Company"
           className="inline-flex items-center"
         >
-          <img src={logo} alt="" className='w-9/12'/>
+          <img src={logo} alt="" className='w-8/12'/>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex text-[16px] uppercase">
           {menu}
@@ -140,7 +140,7 @@ const Navbar = () => {
           </button>
           {isMenuOpen && (
             <div className="absolute top-0 left-0 w-full">
-              <div className="p-5 bg-white border rounded shadow-sm">
+              <div className="p-5 bg-white border rounded shadow-sm z-30">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <Link
@@ -149,7 +149,7 @@ const Navbar = () => {
                       title="Company"
                       className="inline-flex items-center"
                     >
-                    <img src={logo} alt="" />
+                    <img src={logo} alt="" className='w-8/12' />
                     </Link>
                   </div>
                   <div>
@@ -171,6 +171,34 @@ const Navbar = () => {
                 <nav>
                   <ul className="space-y-4">
                     {menu}
+                    {
+                      user?.uid ? 
+                    <>
+                      <li>
+                      <button onClick={logOutHandle} className="font-medium tracking-wide text-[17px]" >
+                        Log Out
+                      </button>
+                      </li>
+                      <div className="avatar">
+                          <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={user?.photoURL} alt="userImage" />
+                          </div>
+                      </div>
+                    </> :
+                    <>
+                      <li>
+                      <Link
+                        to="/login"
+                        className="font-medium tracking-wide text-[17px]"
+                        aria-label="Sign up"
+                        title="Sign up"
+                      >
+                        Log In
+                      </Link>
+                      </li>
+                      <FaUser></FaUser> 
+                    </>
+                    }
                   </ul>
                 </nav>
               </div>

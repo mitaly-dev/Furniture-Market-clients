@@ -31,7 +31,7 @@ const AllBuyers = () => {
 
 
     return  (
-        <div className="overflow-x-auto px-14">
+        <div className="overflow-x-auto px-4 sm:px-12">
         <table className="table rounded-lg w-full border-2 border-primary">
           <thead>
             <tr className='text-xl'>

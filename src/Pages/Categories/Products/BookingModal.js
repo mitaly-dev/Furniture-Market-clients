@@ -33,6 +33,8 @@ const BookingModal = ({product,setBookingModalData}) => {
            if(data.acknowledged){
             setBookingModalData(null)
             toast.success('Order successfull',{duration:1200})
+           }else{
+            toast.error(data.message,{duration:1200})
            }
         })
         .catch(error=>console.log(error));

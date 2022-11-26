@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className="bg-secondary font-jost">
-        <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10">
+        <div className="pt-16 mx-auto px-4 sm:px-10 lg:px-20 ">
           <div className="grid row-gap-10 mb-8 lg:grid-cols-6">
             <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
               <div>

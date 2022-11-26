@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 import Spinner from '../../../../Components/Spinner';
 import Product from './Product'
+import { useEffect } from 'react';
 
 const MyProducts = () => {
     const {user,loading} = useContext(AuthContext)
@@ -19,7 +20,7 @@ const MyProducts = () => {
             return data
         }
     })
-    
+   
     if(isLoading){
         return <Spinner></Spinner>
     }

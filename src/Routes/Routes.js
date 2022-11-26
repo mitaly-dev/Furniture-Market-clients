@@ -39,7 +39,11 @@ export const router = createBrowserRouter([
         element:<PrivateRoute><Products></Products></PrivateRoute>},
         {path:'/payment',element:<Payment></Payment>},
         {path:'/payment/:title',
-        loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/order/payment/${params.title}`),
+        loader:async({params})=>fetch(`${process.env.REACT_APP_PORT}/order/payment/${params.title}`,{
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('furniture-token')}`
+            }
+        }),
         element:<Payment></Payment>},
     ]
     },
