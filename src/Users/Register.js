@@ -79,12 +79,10 @@ const Register = () => {
                 )
                 .catch(error=>{
                     setLoad(false)
-                    console.log(error.message)
                 })
             })
             .catch(error=>{
                 setLoad(false)
-                console.error(error.message)
             })
            })
            .catch(error=>{
@@ -95,7 +93,6 @@ const Register = () => {
     })
     .catch(error=>{
         setLoad(false)
-        console.error(error.message)
     })
 
     }

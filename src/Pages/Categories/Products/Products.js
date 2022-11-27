@@ -4,11 +4,16 @@ import { useLoaderData } from 'react-router-dom';
 import { useNavigation } from "react-router-dom";
 import Spinner from '../../../Components/Spinner';
 import { useTitle } from '../../../Hook/useTitle';
+import { useEffect } from 'react';
 
 const Products = () => {
     const navigation = useNavigation()
     const products = useLoaderData()
     useTitle('Products')
+    
+    useEffect(() => {
+      window.scrollTo(0, 0)
+      }, [])
 
     if(navigation.state==='loading'){
       return <Spinner></Spinner>
