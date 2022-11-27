@@ -6,8 +6,10 @@ import { AuthContext } from '../Contexts/AuthProvider';
 import toast,{ Toaster } from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
 import { jwtToken } from '../API/access-jwt-token';
+import { useTitle } from '../Hook/useTitle';
 
 const Login = () => {
+  useTitle('Login')
     const { register, handleSubmit,formState: { errors } } = useForm();
     const navigate = useNavigate()
     const location = useLocation()
@@ -38,7 +40,10 @@ const Login = () => {
         })
         .catch(error=>console.error(error))
       })
-      .catch(error=>toast.error(error.message,{duration:1200}))
+      .catch(error=>{
+        toast.error(error.message,{duration:1200})
+        console.log(error.message)
+      })
       
     }
     return (
@@ -73,9 +78,7 @@ const Login = () => {
                         <div className="space-y-1 text-sm">
                             <label htmlFor="password" className="block mb-1 font-medium text-[16px]">Password</label>
                             <input {...register("password",{
-                                required:"Password is required!",
-                                pattern:{value:/(?=.*[!@#$&*])/,message:'password should be minimum one special character'},
-                                minLength:{value:6,message:'password should be must 6 characters'}
+                                required:"Password is required!"
                                 })} type="password" placeholder="Password"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm" />
                             {errors?.password && <p className='text-red-600'>{errors?.password.message}</p>}
                         </div>

@@ -2,15 +2,21 @@ import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
+import Spinner from '../../../../../Components/Spinner';
+import { useTitle } from '../../../../../Hook/useTitle';
 
 
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_PUBLISHABLE_KEY}`)
 
 const Payment = () => {
+  useTitle('Payment')
   const order = useLoaderData()
- 
+ const navigateion = useNavigation()
+ if(navigateion.state==='loading'){
+  return <Spinner></Spinner>
+ }
     return (
         <div className="relative">
         <img

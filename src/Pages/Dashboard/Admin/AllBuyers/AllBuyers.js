@@ -2,9 +2,12 @@ import React from 'react';
 import {
     useQuery,
   } from '@tanstack/react-query'
+import Spinner from '../../../../Components/Spinner';
+import { useTitle } from '../../../../Hook/useTitle';
 
 const AllBuyers = () => {
-    const {data:buyers=[],refetch} = useQuery({
+  useTitle('Buyers')
+    const {data:buyers=[],isLoading,refetch} = useQuery({
         queryKey:['allbuyers'],
         queryFn:async()=>{
             const res = await fetch(`${process.env.REACT_APP_PORT}/allbuyers`)
@@ -13,6 +16,9 @@ const AllBuyers = () => {
         }
     })
 
+    if(isLoading){
+      return <Spinner></Spinner>
+    }
     const deleteBuyer=(id)=>{
         const sure = window.confirm('are you sure you want to delete?')
         if(sure){
@@ -31,14 +37,14 @@ const AllBuyers = () => {
 
 
     return  (
-        <div className="overflow-x-auto px-4 sm:px-12">
-        <table className="table rounded-lg w-full border-2 border-primary">
+        <div className="overflow-x-auto px-4 sm:px-10 sm:pl-10 lg:pr-20">
+        <table className="table rounded-lg w-full border-2 ">
           <thead>
-            <tr className='text-xl'>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Delete</th>
+            <tr className='text-xl border border-b-primary'>
+              <th  className='bg-secondary text-white py-5 text-[15px]'></th>
+              <th  className='bg-secondary text-white py-5 text-[15px]'>Name</th>
+              <th  className='bg-secondary text-white py-5 text-[15px]'>Email</th>
+              <th  className='bg-secondary text-white py-5 text-[15px]'>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -56,7 +62,7 @@ const AllBuyers = () => {
                             <td className='font-semibold capitalize'>{name}</td>
                             <td className='font-semibold'>{email}</td>
                             <td>
-                            <button onClick={()=>deleteBuyer(_id)} className='py-1 px-4 rounded-lg bg-primary text-white font-semibold'>Delete</button>
+                            <button onClick={()=>deleteBuyer(_id)} className='hover:bg-orange-600 py-1 px-4 rounded-lg bg-primary text-white font-semibold'>Delete</button>
                             </td>
                         </tr>
             })

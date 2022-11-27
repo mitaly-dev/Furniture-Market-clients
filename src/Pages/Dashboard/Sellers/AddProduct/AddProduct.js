@@ -1,17 +1,19 @@
 import React from 'react';
-import toast,{ Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import moment from "moment";
 import { useContext } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 import { imageUpload } from '../../../../API/imageUpload';
 import useRole from '../../../../Hook/useRole';
 import Spinner from '../../../../Components/Spinner';
+import { useTitle } from '../../../../Hook/useTitle';
 
 
 
 const AddProduct = () => {
+    useTitle('Addproduct')
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const {user} = useContext(AuthContext)
     const [role,isRoleLoading,isVerify] = useRole(user?.email)
@@ -43,7 +45,7 @@ const AddProduct = () => {
             const image = data.data.display_url
             const product = {category,title,originalPrice,resalePrice,location,yearsOfPurchase,phone,condition,         description,time,image,
                 available:true,
-                verified:isVerify,
+                verify:isVerify,
                 email:user?.email,
                 sellerName:user?.displayName
                 }
@@ -71,7 +73,7 @@ const AddProduct = () => {
     }
 
     return (
-        <div className='px-4 sm:px-10 lg:px-12'>
+        <div className='px-4 sm:px-10 sm:pl-10 lg:pr-20'>
             <div className="bg-white rounded shadow-2xl p-7 sm:p-10 w-full">
                   <div className='mb-4'>
                     <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-10 sm:text-2xl">

@@ -13,12 +13,15 @@ import Payment from "../Pages/Dashboard/Buyers/MyOrders/Payment.js/Payment";
 import WishList from "../Pages/Dashboard/Buyers/WishList/WishList";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";
+import MyBuyers from "../Pages/Dashboard/Sellers/MyBuyers/MyBuyers";
 import MyProducts from "../Pages/Dashboard/Sellers/MyProducts/MyProducts";
 import Errorpage from "../Pages/Errorpage";
 import Home from "../Pages/Home/Home";
 import Login from "../Users/Login";
 import Register from "../Users/Register";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 export const router = createBrowserRouter([
@@ -53,13 +56,14 @@ export const router = createBrowserRouter([
         errorElement:<Errorpage></Errorpage>,
         children:[
             {path:'/dashboard',element:<Dashboard></Dashboard>},
-            {path:'/dashboard/allsellers',element:<AllSellers></AllSellers>},
-            {path:'/dashboard/allBuyers',element:<AllBuyers></AllBuyers>},
-            {path:'/dashboard/reportedItem',element:<ReportedItem></ReportedItem>},
-            {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
-            {path:'/dashboard/myProducts',element:<MyProducts></MyProducts>},
-            {path:'/dashboard/myOrders',element:<MyOrders></MyOrders>},
-            {path:'/dashboard/myWishList',element:<WishList></WishList>},
+            {path:'/dashboard/allsellers',element:<AdminRoute><AllSellers></AllSellers></AdminRoute>},
+            {path:'/dashboard/allBuyers',element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>},
+            {path:'/dashboard/reportedItem',element:<AdminRoute><ReportedItem></ReportedItem></AdminRoute>},
+            {path:'/dashboard/addProduct',element:<SellerRoute><AddProduct></AddProduct></SellerRoute>},
+            {path:'/dashboard/myProducts',element:<SellerRoute><MyProducts></MyProducts></SellerRoute>},
+            {path:'/dashboard/myOrders',element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>},
+            {path:'/dashboard/myWishList',element:<PrivateRoute><WishList></WishList></PrivateRoute>},
+            {path:'/dashboard/myBuyers',element:<SellerRoute><MyBuyers></MyBuyers></SellerRoute>},
         ]
     }
 ])

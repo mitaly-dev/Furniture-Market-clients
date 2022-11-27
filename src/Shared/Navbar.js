@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 import { FaUser } from 'react-icons/fa';
 import { useContext } from 'react';
@@ -18,57 +18,57 @@ const Navbar = () => {
     }
 
     const menu = <>
-        <li>
-            <Link
+        <li className='hover:border-b-2 border-b-primary duration-100'>
+            <NavLink
               to="/home"
               aria-label="home"
               title="home"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({isActive})=>isActive?"font-medium tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400":"font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"}
             >
               Home
-            </Link>
+            </NavLink>
         </li>
-        <li>
-            <Link
+        <li className='hover:border-b-2 border-b-primary duration-100'>
+            <NavLink
               to="/about"
               aria-label="about"
               title="about"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({isActive})=>isActive?"font-medium tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400":"font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"}
             >
               About Us
-            </Link>
+            </NavLink>
         </li>
-        <li>
-            <Link
+        <li className='hover:border-b-2 border-b-primary duration-100'>
+            <NavLink
               to="/categories"
               aria-label="categories"
               title="categories"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({isActive})=>isActive?"font-medium tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400":"font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"}
             >
               Categories
-            </Link>
+            </NavLink>
         </li>
-        <li>
-            <Link
+        <li className='hover:border-b-2 border-b-primary duration-100'>
+            <NavLink
               to="/blog"
               aria-label="blog"
               title="blog"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className={({isActive})=>isActive?"font-medium tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400":"font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"}
             >
               Blog
-            </Link>
+            </NavLink>
         </li>
         {
           user && 
-          <li>
-          <Link
+          <li className='hover:border-b-2 border-b-primary duration-100'>
+          <NavLink
             to="/dashboard"
             aria-label="dashboard"
             title="dashboard"
-            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className={({isActive})=>isActive?"font-medium tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400":"font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"}
           >
            Dashboard
-          </Link>
+          </NavLink>
       </li>
         }
     
@@ -76,15 +76,14 @@ const Navbar = () => {
     return (
       <>
        <Topbar></Topbar>
-      <div className="py-2 mx-auto px-4 sm:px-10 lg:px-20 font-jost">
+      <div className="py-5 mx-auto px-4 sm:px-10 lg:px-20 font-jost sticky top-0 bg-white z-50">
       <div className="relative flex items-center justify-between z-30">
         <Link
           to="/"
-          aria-label="Company"
-          title="Company"
           className="inline-flex items-center"
         >
-          <img src={logo} alt="" className='w-8/12'/>
+          {/* <img src={logo} alt="" className='w-8/12'/> */}
+          <span className='text-secondary font-bold text-3xl'>furniture<span className='text-primary'>M</span>arket<span className='text-primary'>.</span></span>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex text-[16px] uppercase">
           {menu}
@@ -115,7 +114,7 @@ const Navbar = () => {
             Log In
           </Link>
           </li>
-          <FaUser></FaUser> 
+          <FaUser className='text-primary text-lg'></FaUser> 
         </>
         }
         </ul>
@@ -146,13 +145,12 @@ const Navbar = () => {
               <div className="p-5 bg-white border rounded shadow-sm z-30">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <Link
+                  <Link
                       to="/"
-                      aria-label="Company"
-                      title="Company"
                       className="inline-flex items-center"
                     >
-                    <img src={logo} alt="" className='w-8/12' />
+                      {/* <img src={logo} alt="" className='w-8/12'/> */}
+                      <span className='text-secondary font-bold text-3xl'>furniture<span className='text-primary'>M</span>arket<span className='text-primary'>.</span></span>
                     </Link>
                   </div>
                   <div>
@@ -199,7 +197,7 @@ const Navbar = () => {
                         Log In
                       </Link>
                       </li>
-                      <FaUser></FaUser> 
+                      <FaUser className='text-primary text-lg'></FaUser> 
                     </>
                     }
                   </ul>

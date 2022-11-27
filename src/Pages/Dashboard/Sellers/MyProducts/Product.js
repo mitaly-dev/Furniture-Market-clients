@@ -15,6 +15,7 @@ const Product = ({product,refetch}) => {
         .then(res=>res.json())
         .then(data=>{
             if(data.deletedCount>0){
+                toast.success('deleted succuccfull')
                 refetch()
             }
         })
@@ -45,19 +46,19 @@ const Product = ({product,refetch}) => {
 
     return (
         <li className="flex flex-col py-6 sm:flex-row sm:justify-between font-jost">
-        <div className="sm:flex w-full space-x-2 sm:space-x-4">
+        <div className="sm:flex w-full sm:space-x-4">
             <div className='relative'>
             <img className="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500" src={image} alt="product" />
                 {
                     paid && 
-                    <span className='bg-primary rounded-full p-4 px-3 text-white font-semibold absolute -top-6 -left-8'>
+                    <span className='bg-primary rounded-full p-4 px-3 text-white font-semibold absolute top-0 sm:-top-6 right-0 sm:right-[75px]'>
                         Sold
                     </span> 
                 }    
                             
             </div>
             <div className="flex flex-col justify-between w-full pb-4">
-                <div className="flex justify-between w-full pb-2 space-x-2">
+                <div className="sm:flex justify-between w-full pb-2 space-x-2">
                     <div className="space-y-1 capitalize">
                         <h3 className="text-lg font-semibold leading-snug sm:pr-8">{title}</h3>
                         <p className="text-sm dark:text-gray-400">Category : {category}</p>
@@ -70,16 +71,16 @@ const Product = ({product,refetch}) => {
                             }
                         
                     </div>
-                    <div className="text-right">
+                    <div className="text-left sm:text-right">
                         <p className='text-xl font-semibold'>Price</p>
                         <p className="text-lg font-semibold text-red-600">${resalePrice}</p>
                     </div>
                 </div>
-                <div className='flex items-center justify-between gap-5 w-full'>
-                    <button onClick={()=>advertiseHandle(_id)} className="text-center bg-primary space-x-1 text-lg font-semibold py-1 px-5 text-white">
+                <div className='flex items-center justify-between  w-full'>
+                    <button onClick={()=>advertiseHandle(_id)} className="text-center bg-primary hover:bg-orange-600 space-x-1 text-lg font-semibold py-1 px-5 text-white">
                     Advertise
                     </button>
-                    <button onClick={()=>deleteProductHandle(_id)} type="button" className="flex items-center space-x-1 bg-primary text-white py-2 px-5">
+                    <button onClick={()=>deleteProductHandle(_id)} type="button" className="hover:bg-orange-600 flex items-center space-x-1 bg-primary text-white py-2 px-5">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 h-4 fill-current">
 								<path d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z"></path>
 								<rect width="32" height="200" x="168" y="216"></rect>

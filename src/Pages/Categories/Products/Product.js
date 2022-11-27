@@ -105,9 +105,12 @@ const Product = ({product}) => {
                 {
                     optionOpen && <div className='absolute top-0 border right-7 rounded-lg bg-white p-5 w-48 text-center space-y-2'>
                     <button onClick={wishListHandle} className='capitalize flex items-center'>
-                    <FaHeart className='text-red-400 mr-4'></FaHeart>add to wishlist</button>
+                    <FaHeart className='text-red-600 mr-4'></FaHeart>add to wishlist</button>
                     <button onClick={reportHandle} className='capitalize flex items-center'>
-                    <span className='text-secondary mr-4 text-xl font-semibold'>x</span>Report to admin</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3 h-3 mr-4">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    Report to admin</button>
                 </div>
                 }
             </div>
@@ -117,7 +120,7 @@ const Product = ({product}) => {
             <h2 className="mb-1 text-xl font-semibold capitalize">{title}</h2>
             <p className=" dark:text-gray-400">
                 {
-                    description? description.slice(0,120)+"..." : "Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud..."
+                    description && description.slice(0,120)+"..."
                 }           
             </p>
         </div>
@@ -128,13 +131,16 @@ const Product = ({product}) => {
             <p><span className='font-semibold'>Original Price :</span> ${originalPrice}</p>
             <p className='mt-2 font-semibold'>Resale Price <span className='text-red-600 font-semibold text-2xl'>${resalePrice}</span></p>
             <div className='mt-2'>
-                <label onClick={()=>setBookingModalData(product)} htmlFor={`booking-modal${_id}`} className="inline-flex items-center font-semibold px-6 py-2 bg-primary text-white text-lg mt-5 cursor-pointer">
+                <label onClick={()=>{
+                    setBookingModalData(product)
+                    !user?.uid && toast.error('please login first then book product',{duration:1200})
+                }} htmlFor={`booking-modal${_id}`} className="inline-flex items-center font-semibold px-6 py-2 bg-primary hover:bg-orange-600 text-white text-lg mt-5 cursor-pointer">
                 <FaCartPlus className='mr-2'></FaCartPlus>
                     Book Now
                 </label>
             </div>
             {
-                bookingModalData && <BookingModal product={product} setBookingModalData={setBookingModalData}></BookingModal>
+                bookingModalData && user?.uid && <BookingModal product={product} setBookingModalData={setBookingModalData}></BookingModal>
             }
         </div>
     </div>

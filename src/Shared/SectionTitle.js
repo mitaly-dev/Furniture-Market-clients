@@ -5,7 +5,7 @@ const SectionTitle = ({content}) => {
     return (
         <div className='font-jost text-center '>
             <p className='text-primary text-lg italic mb-2'>{heads}</p>
-            <p className='text-5xl font-semibold pb-16 text-secondary capitalize'>{title}</p>
+            <p className='text-4xl font-semibold pb-7 sm:pb-14 lg:pb-16 text-secondary capitalize'>{title}</p>
         </div>
     );
 };

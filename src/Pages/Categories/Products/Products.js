@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-    useQuery,
-  } from '@tanstack/react-query'
 import Product from './Product';
 import { useLoaderData } from 'react-router-dom';
 import { useNavigation } from "react-router-dom";
 import Spinner from '../../../Components/Spinner';
+import { useTitle } from '../../../Hook/useTitle';
 
 const Products = () => {
     const navigation = useNavigation()
     const products = useLoaderData()
+    useTitle('Products')
 
     if(navigation.state==='loading'){
       return <Spinner></Spinner>

@@ -8,8 +8,10 @@ import toast,{ Toaster } from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
 import { jwtToken } from '../API/access-jwt-token';
 import { dbUser } from '../API/user';
+import { useTitle } from '../Hook/useTitle';
 
 const Register = () => {
+    useTitle('Register')
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const {
@@ -59,6 +61,9 @@ const Register = () => {
                             }
                         })
                         .catch(error=>console.error(error))
+                    }
+                    else{
+                        toast.error(data.message,{duration:2000})
                     }
                 }
                 )

@@ -16,17 +16,17 @@ const BannerItem = ({banner}) => {
                     <div className="py-16 lg:py-20">
                     <div className="">
                         <div className="w-full max-w-xl text-white">
-                        <h2 className=" mb-6 font-sans text-3xl font-bold tracking-tight sm:text-6xl sm:leading-none">
-                            The furniture that <br></br>
-                            defines you
+                        <h2 className=" mb-6 font-sans text-3xl font-bold tracking-tight sm:text-5xl leading-10">
+                        Classified platform,<br></br>
+                        a Marketplace Connecting Buyers and Sellers
                         </h2>
                         <p className=" mb-4 text-base md:text-2xl">
                         Your comfort and aesthetic design suitable for you is before anything else
                         </p>
                         <Link
-                            to="/"
+                            to="/categories"
                             aria-label=""
-                            className="inline-flex items-center font-semibold px-4 py-3 sm:px-8 sm:py-4 text-lg bg-primary sm:text-xl mt-5"
+                            className="inline-flex items-center font-semibold px-4 py-3 sm:px-6 sm:py-4 text-lg bg-primary sm:text-xl my-5"
                         >
                             <FaCartPlus className='mr-2'></FaCartPlus>
                             Shop Now
@@ -37,7 +37,7 @@ const BannerItem = ({banner}) => {
                     </div>
                 </div>
             </div>
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <div className="absolute flex lg:justify-between justify-center gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0 lg:bottom-1/2 ">
             <a href={`#slide${banner.prev}`} className="btn btn-circle">❮</a> 
             <a href={`#slide${banner.next}`} className="btn btn-circle">❯</a>
             </div>

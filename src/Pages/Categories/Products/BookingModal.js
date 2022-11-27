@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const BookingModal = ({product,setBookingModalData}) => {
     const navigate=useNavigate()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const {title,verified,sellerEmail,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image} = product
+    const {title,location,email:sellerEmail,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image} = product
     const {user,loading} = useContext(AuthContext)
 
     const bookingHandle=(data)=>{
@@ -21,7 +21,7 @@ const BookingModal = ({product,setBookingModalData}) => {
         const phone = data.phone 
         const location = data.location
 
-        const order = {name,email,title,price,productImg,phone,location,category}
+        const order = {name,email,title,price,productImg,phone,location,category,sellerEmail}
 
         fetch(`${process.env.REACT_APP_PORT}/orders`,{
             method:'POST',

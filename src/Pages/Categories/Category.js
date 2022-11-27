@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Category = ({category}) => {
 
-    const {category:categoryName,image,_id} = category
+    const {category:categoryName,image} = category
     return (
         <div>
             <div className="w-full shadow-xl relative">
@@ -13,12 +13,12 @@ const Category = ({category}) => {
                 <Link
                 to={`/products/${categoryName}`}
                 aria-label=""
-                className="block font-medium px-5 py-2 bg-[#BBCED5] mt-4"
+                className="block font-medium px-5 py-2 bg-[#BBCED5] hover:bg-[#819aa3] hover:text-white mt-4"
               >
-               View product
+               View Product
               </Link>
             </div>
-       </div>
+            </div>
         </div>
     );
 };

@@ -176,7 +176,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="md:max-w-md lg:col-span-2">
-              <span className="text-base font-medium tracking-wide text-white text-2xl mb-5 font-jost">
+              <span className="font-medium tracking-wide text-white text-2xl mb-5 font-jost">
                 Subscribe for updates
               </span>
               <form className="flex flex-col mt-4 md:flex-row">
@@ -193,15 +193,11 @@ const Footer = () => {
                   Subscribe
                 </button>
               </form>
-              <p className="mt-4 text-sm text-white">
-                Bacon ipsum dolor amet short ribs pig sausage prosciuto chicken
-                spare ribs salami.
-              </p>
             </div>
           </div>
           <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
             <p className="text-sm text-white">
-              © Copyright 2020 Lorem Inc. All rights reserved.
+              © Copyright 2022 FurnitureMarket.lmt All rights reserved.
             </p>
             <div className="flex items-center mt-4 space-x-4 sm:mt-0">
               <a

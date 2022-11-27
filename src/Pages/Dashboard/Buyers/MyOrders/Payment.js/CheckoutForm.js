@@ -80,7 +80,7 @@ const CheckoutForm = ({order}) => {
       }
 
       const payment = {
-        title,price,email,category,transactionId:paymentIntent.id
+        title,price,email,category,transactionId:paymentIntent.id,orderId:_id
     }
       if(paymentIntent.status==='succeeded'){
        fetch(`${process.env.REACT_APP_PORT}/payments`,{
@@ -122,7 +122,7 @@ const CheckoutForm = ({order}) => {
                     }}
                 />
             </div>
-            <button type="submit" disabled={!stripe} className="py-2 font-semibold mt-3 text-white rounded-lg btn-primary px-8">
+            <button type="submit" disabled={!stripe} className="py-2 font-semibold mt-3 text-white rounded-lg bg-primary px-8">
                 Pay
             </button>
         </form>
@@ -137,9 +137,6 @@ const CheckoutForm = ({order}) => {
           </div>
         }
        </div>
-       {
-        success && <Link to="">Go Back</Link>
-       }
        </>
     );
 };

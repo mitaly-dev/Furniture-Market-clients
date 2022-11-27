@@ -14,8 +14,10 @@ const DashboardLayout = () => {
     const [role,isRoleLoading] = useRole(user?.email)
     
     if(isRoleLoading){
+        console.log(role)
         return <Spinner></Spinner>
     }
+    console.log(role)
     return (
         <div>
             <Navbar></Navbar>
@@ -26,21 +28,24 @@ const DashboardLayout = () => {
                     <div className='flex justify-end'>
                     <label htmlFor="my-drawer-2" className="btn bg-primary border-none drawer-button lg:hidden mr-5 sm:mr-10">Menu</label>
                     </div>
-                    <div className='w-full mt-16'>
+                    <div className='w-full lg:mt-16'>
                     <Outlet></Outlet>
                     </div>
                 </div> 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-14 font-jost">
+                    <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-16 font-jost capitalize">
                     <li className='sm:hidden'>
                     <label htmlFor="my-drawer-2" className="btn btn-sm btn-circle bg-primary mb-10">✕</label>
                     </li>
-                    <li>
-                        <div>
-                        <img src={user?.photoURL} alt="" className='w-24 h-24 rounded-full object-cover' />
+                    {
+                        user?.uid && <li>
+                        <div className='grid grid-cols-1'>
+                        <img src={user?.photoURL ? user?.photoURL : 'https://ibb.co/D9cMPk9'} alt="" className='w-24 h-24 rounded-full object-cover' />
+                        <h3 className='text-secondary text-xl'>{user?.displayName} {`(${role})`}</h3>
                         </div>
                     </li>
+                    }
                     {
                         role==='buyer' &&  <BuyerOption></BuyerOption>
                     }
