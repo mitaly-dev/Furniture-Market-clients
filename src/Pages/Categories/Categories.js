@@ -5,9 +5,14 @@ import {
 import Category from './Category';
 import Spinner from '../../Components/Spinner';
 import { useTitle } from '../../Hook/useTitle';
+import { useEffect } from 'react';
 
 const Categories = () => {
     useTitle('Categories')
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
+    
     const {data:categories=[],isLoading} = useQuery({
         queryKey:['categories'],
         queryFn:async()=>{

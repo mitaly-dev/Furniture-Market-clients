@@ -7,20 +7,26 @@ import toast from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
 import { jwtToken } from '../API/access-jwt-token';
 import { useTitle } from '../Hook/useTitle';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Login = () => {
     useTitle('Login')
     const { register, handleSubmit,formState: { errors } } = useForm();
+    const [load,setLoad]=useState(false)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
-
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
     const {
         userSignIn,
         logOut
     } = useContext(AuthContext)
     
     const userSignInHandle=(data)=>{
+      setLoad(true)
       const email=data.email
       const password=data.password 
 
@@ -31,18 +37,21 @@ const Login = () => {
             if(data.accessToken){
                 localStorage.setItem('furniture-token',data.accessToken)
                 toast.success('Login successfull',{duration:1200})
+                setLoad(false)
                 navigate(from,{replace:true})
             }
             else{
+              setLoad(false)
               toast.error(data.message)
               logOut()
             }
         })
-        .catch(error=>console.error(error))
+        .catch(error=>{
+          console.error(error)})
       })
       .catch(error=>{
+        setLoad(false)
         toast.error(error.message,{duration:1200})
-        console.log(error.message)
       })
       
     }
@@ -82,7 +91,10 @@ const Login = () => {
                                 })} type="password" placeholder="Password"  className="outline-none flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm" />
                             {errors?.password && <p className='text-red-600'>{errors?.password.message}</p>}
                         </div>
-                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary"> Login</button>
+                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary">
+                          {
+                            load ? <span className='border-2 border-dashed border-white animate-spin w-7 h-7 rounded-full'></span> : "Login"
+                          } </button>
                     </form>
                     <SocialLogin from={from}></SocialLogin>
                 </div>

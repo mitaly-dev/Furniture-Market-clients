@@ -9,7 +9,7 @@ import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem/ReportedItem";
 import MyOrders from "../Pages/Dashboard/Buyers/MyOrders/MyOrders";
-import Payment from "../Pages/Dashboard/Buyers/MyOrders/Payment.js/Payment";
+import Payment from "../Pages/Dashboard/Buyers/MyOrders/Payment/Payment";
 import WishList from "../Pages/Dashboard/Buyers/WishList/WishList";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";

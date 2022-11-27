@@ -1,9 +1,8 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 
 const Product = ({product,refetch}) => {
-    const {title,verify,email,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description,paid} = product
+    const {title,category,resalePrice,_id,image,paid} = product
 
 
     const deleteProductHandle=(id)=>{
@@ -38,10 +37,10 @@ const Product = ({product,refetch}) => {
                 toast.success('Advertise added successfull',{duration:1200})
             }
             else{
-                toast.error(data.message,{duration:1200})
+                toast.error(data.message,{duration:2000})
             }
         })
-        .catch(error=>toast.error(error.message,{duration:1200}))
+        .catch(error=>toast.error(error.message,{duration:1500}))
     }
 
     return (

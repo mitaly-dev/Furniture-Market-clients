@@ -144,14 +144,15 @@ const CheckoutForm = ({order}) => {
         {
             cardError  && <p className='text-red-500 font-semibold font-jost'>{cardError}</p>
         }
-        <div className='text-[16px] mt-4 font-jost'>
+          <div className='text-[16px] mt-4 font-jost'>
         {
-          success && <div>
+          success && 
+          <div>
             <p className='text-green-600'>{success}</p>
             <p className='font-semibold'>TransactionId : {transactionId}</p>
           </div>
         }
-       </div>
+          </div>
        </>
     );
 };

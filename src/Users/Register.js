@@ -4,23 +4,31 @@ import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 import { imageUpload } from '../API/imageUpload';
-import toast,{ Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
 import { jwtToken } from '../API/access-jwt-token';
 import { dbUser } from '../API/user';
 import { useTitle } from '../Hook/useTitle';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Register = () => {
     useTitle('Register')
+    const [load,setLoad]=useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const {
-        user,
         createUser,
         updateUserProfile,
-        logOut} = useContext(AuthContext)
+        logOut
+    } = useContext(AuthContext)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        }, [])
     
     const createUserHandle=(data)=>{
+    setLoad(true)
       const name=data.name
       const email=data.email
       const password=data.password
@@ -57,24 +65,38 @@ const Register = () => {
                                 localStorage.setItem('furniture-token',data.accessToken)
                                 toast.success('Registration successfull',{duration:1200})
                                 logOut()
+                                setLoad(false)
                                 navigate('/login')
                             }
                         })
                         .catch(error=>console.error(error))
                     }
                     else{
+                        setLoad(false)
                         toast.error(data.message,{duration:2000})
                     }
                 }
                 )
-                .catch(error=>console.log(error.message))
+                .catch(error=>{
+                    setLoad(false)
+                    console.log(error.message)
+                })
             })
-            .catch(error=>console.error(error.message))
+            .catch(error=>{
+                setLoad(false)
+                console.error(error.message)
+            })
            })
-           .catch(error=>toast.error(error.message,{duration:1200}))
+           .catch(error=>{
+            setLoad(false)
+            toast.error(error.message,{duration:1200})
+           })
         }
     })
-    .catch(error=>console.error(error.message))
+    .catch(error=>{
+        setLoad(false)
+        console.error(error.message)
+    })
 
     }
     return (
@@ -129,7 +151,11 @@ const Register = () => {
                              <input type="radio" {...register("role")} style={{"marginRight": "10px"}} className="radio" value={'seller'} />Seller
                          </div>
                         </div>
-                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary"> Register</button>
+                        <button type="submit" className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-primary">
+                            {
+                                load? <span className='border-2 border-dashed border-white animate-spin w-7 h-7 rounded-full'></span> : ' Register'
+                            }
+                            </button>
                     </form>
                     <SocialLogin></SocialLogin>
                     <Link to="/login" className="mb-4 sm:text-center sm:mb-6 italic  mt-5 inline-block text-lg">

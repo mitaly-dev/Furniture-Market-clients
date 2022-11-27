@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    useQuery,
-  } from '@tanstack/react-query'
 import axios from 'axios'
 import { useEffect } from 'react';
 import Spinner from '../../Components/Spinner';
@@ -13,6 +10,9 @@ const Blog = () => {
     useTitle('Blog')
     const [blogs,setBlog]=useState([])
     const [isLoading,setIsLoading]=useState(true)
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_PORT}/blogs`)

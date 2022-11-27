@@ -1,8 +1,12 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useTitle } from '../../Hook/useTitle';
 
 const About = () => {
     useTitle('About')
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <div className="px-4 sm:px-10 lg:px-20 py-16 mx-auto lg:py-20 bg-[#0201010d]">
            

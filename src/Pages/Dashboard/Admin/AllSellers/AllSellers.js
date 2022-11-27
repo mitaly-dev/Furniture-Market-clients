@@ -60,7 +60,6 @@ const AllSellers = () => {
           }
         })
         .catch(error=>{
-          console.log(error.message)
           toast.error(error.message,{duration:1200})
         })
       }

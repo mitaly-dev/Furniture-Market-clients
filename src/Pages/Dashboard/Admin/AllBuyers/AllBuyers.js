@@ -6,7 +6,7 @@ import Spinner from '../../../../Components/Spinner';
 import { useTitle } from '../../../../Hook/useTitle';
 
 const AllBuyers = () => {
-  useTitle('Buyers')
+  useTitle('Buyera')
     const {data:buyers=[],isLoading,refetch} = useQuery({
         queryKey:['allbuyers'],
         queryFn:async()=>{
