@@ -29,5 +29,5 @@
 - Mongodb
 
 
-### Admin : furnituremarket@gmail.com
-### Password : 12345*
+### Admin-Email : furnituremarket@gmail.com
+### Admin-Password : 12345*
