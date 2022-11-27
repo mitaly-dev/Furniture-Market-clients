@@ -10,14 +10,13 @@ import SellerOption from '../Pages/Dashboard/Sellers/SellerOption';
 import Navbar from '../Shared/Navbar';
 
 const DashboardLayout = () => {
-    const {user,logOut,loading} = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
     const [role,isRoleLoading] = useRole(user?.email)
     
     if(isRoleLoading){
-        console.log(role)
         return <Spinner></Spinner>
     }
-    console.log(role)
+   
     return (
         <div>
             <Navbar></Navbar>

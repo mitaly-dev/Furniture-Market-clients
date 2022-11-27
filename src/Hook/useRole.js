@@ -13,7 +13,6 @@ export const useRole = (email) => {
             .then(data=>{
                 setIsRoleLoading(false)
                 setRole(data?.role)
-                console.log(data.role)
                 setIsVerify(data.verify)
                 
             })

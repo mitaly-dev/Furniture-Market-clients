@@ -80,7 +80,12 @@ const CheckoutForm = ({order}) => {
       }
 
       const payment = {
-        title,price,email,category,transactionId:paymentIntent.id,orderId:_id
+        title,
+        price,
+        email,
+        category,
+        transactionId:paymentIntent.id,
+        productImg
     }
       if(paymentIntent.status==='succeeded'){
        fetch(`${process.env.REACT_APP_PORT}/payments`,{
