@@ -19,6 +19,9 @@ const SellerOption = () => {
             My buyers
             </NavLink>
         </li>
+        <li>
+        <NavLink to="/dashboard/sentRequest" className={({isActive})=>isActive?'text-primary':'text-secondary'}>Send Request</NavLink>
+        </li>
       </>
     );
 };

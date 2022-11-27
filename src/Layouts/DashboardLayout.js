@@ -33,7 +33,7 @@ const DashboardLayout = () => {
                 </div> 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content text-lg font-semibold pl-16 font-jost capitalize">
+                    <ul className="menu p-4 space-y-0 w-80 bg-base-100 text-base-content text-lg font-semibold pl-16 font-jost capitalize">
                     <li className='sm:hidden'>
                     <label htmlFor="my-drawer-2" className="btn btn-sm btn-circle bg-primary mb-10">✕</label>
                     </li>
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
                         user?.uid && <li>
                         <div className='grid grid-cols-1'>
                         <img src={user?.photoURL ? user?.photoURL : 'https://ibb.co/D9cMPk9'} alt="" className='w-24 h-24 rounded-full object-cover' />
-                        <h3 className='text-secondary text-xl'>{user?.displayName} {`(${role})`}</h3>
+                        <h3 className='text-secondary text-xl mb-5'>{user?.displayName} {`(${role})`}</h3>
                         </div>
                     </li>
                     }

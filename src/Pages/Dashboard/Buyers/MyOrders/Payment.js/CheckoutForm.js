@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 
 const CheckoutForm = ({order}) => {
+    const [load,setLoad]=useState(false)
     const {title,productImg,price,phone,name,location,email,category,_id} = order
     const [clientSecret, setClientSecret] = useState("");
     const [cardError,setCardError] = useState('')
@@ -38,6 +39,7 @@ const CheckoutForm = ({order}) => {
     },[price])
 
   const handlePayment=async(event)=>{
+    setLoad(true)
     event.preventDefault();
     if(!stripe || !elements){
         return
@@ -75,6 +77,7 @@ const CheckoutForm = ({order}) => {
       );
 
       if(confirmError){
+        setLoad(false)
         setCardError(confirmError.message)
         return
       }
@@ -98,18 +101,23 @@ const CheckoutForm = ({order}) => {
        .then(res=>res.json())
        .then(data=>{
             if(data.acknowledged){
+                setLoad(false)
                 toast.success('payment successfull',{duration:1200})
                 settransactionId(paymentIntent.id)
                 setsuccess('Congratulation your payment completed')
+                
             }
        })
-       .catch(error=>console.error(error.message))
+       .catch(error=>{
+        console.error(error.message)
+        setLoad(false)
+       })
       }
   }
     return (
        <>
         <form onSubmit={handlePayment}>
-            <div className='py-4 border rounded-xl px-4 mt-10 text-[#252424] border-[#25242462]'>
+            <div className='py-4 border rounded-xl px-4 mt-10 text-[#252424] border-[#25242462] w-full'>
                 <CardElement
                     options={{
                     style: {
@@ -127,8 +135,10 @@ const CheckoutForm = ({order}) => {
                     }}
                 />
             </div>
-            <button type="submit" disabled={!stripe} className="py-2 font-semibold mt-3 text-white rounded-lg bg-primary px-8">
-                Pay
+            <button type="submit" disabled={!stripe} className="py-2 font-semibold mt-3 text-white hover:bg-orange-600 rounded-lg bg-primary px-8">
+                {
+                  load? <p className='border-2 border-dashed border-white animate-spin w-5 h-5 rounded-full'></p> : 'Pay'
+                }
             </button>
         </form>
         {

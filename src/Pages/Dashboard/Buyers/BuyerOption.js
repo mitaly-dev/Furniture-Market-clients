@@ -10,6 +10,9 @@ const BuyerOption = () => {
         <li>
             <NavLink to="/dashboard/myWishList" className={({isActive})=>isActive?'text-primary':'text-secondary'}>My WishList</NavLink>
         </li>
+        <li>
+        <NavLink to="/dashboard/sentRequest" className={({isActive})=>isActive?'text-primary':'text-secondary'}>Send Request</NavLink>
+        </li>
       </>
     );
 };

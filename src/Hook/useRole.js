@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export const useRole = (email) => {
+    const [adminRequest,setAdminRequest] = useState('')
     const [role,setRole] = useState('')
     const [isRoleLoading,setIsRoleLoading] = useState(true)
     const [isVerify,setIsVerify]=useState(false)
@@ -11,10 +12,11 @@ export const useRole = (email) => {
             fetch(`${process.env.REACT_APP_PORT}/verifyRole?email=${email}`)
             .then(res=>res.json())
             .then(data=>{
+                console.log(data)
                 setIsRoleLoading(false)
                 setRole(data?.role)
                 setIsVerify(data.verify)
-                
+                setAdminRequest(data.adminRequest)
             })
             .catch(error=>{
                 setIsRoleLoading(false)
@@ -22,7 +24,7 @@ export const useRole = (email) => {
             })
         }
     },[email])
-    return [role,isRoleLoading,isVerify]
+    return [role,isRoleLoading,isVerify,adminRequest]
 };
 
 export default useRole;

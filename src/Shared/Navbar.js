@@ -76,7 +76,7 @@ const Navbar = () => {
     return (
       <>
        <Topbar></Topbar>
-      <div className="py-5 mx-auto px-4 sm:px-10 lg:px-20 font-jost sticky top-0 bg-white z-50">
+      <div className="py-5 mx-auto px-4 sm:px-10 lg:px-20 font-jost sticky top-0 bg-white z-50 shadow-sm">
       <div className="relative flex items-center justify-between z-30">
         <Link
           to="/"
@@ -93,7 +93,7 @@ const Navbar = () => {
           user?.uid ? 
         <>
           <li>
-          <button onClick={logOutHandle} className="font-medium tracking-wide text-[17px]" >
+          <button onClick={logOutHandle} className="font-medium tracking-wide text-[17px] hover:border-b-2 border-b-primary duration-100" >
             Log Out
           </button>
           </li>
@@ -107,7 +107,7 @@ const Navbar = () => {
           <li>
           <Link
             to="/login"
-            className="font-medium tracking-wide text-[17px]"
+            className="font-medium tracking-wide text-[17px] hover:border-b-2 border-b-primary duration-100"
             aria-label="Sign up"
             title="Sign up"
           >

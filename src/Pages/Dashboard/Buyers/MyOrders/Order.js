@@ -25,7 +25,7 @@ const {title,productImg,price,phone,name,location,email,category,_id,paid} = ord
                                 <span to={`/payment/${title}`} className="text-center bg-orange-600 space-x-1 text-lg font-semibold py-2 px-10 text-white">
                                 Paid
                                 </span> :
-                                <Link to={`/payment/${title}`} className="text-center bg-primary space-x-1 text-lg font-semibold py-2 px-10 text-white">
+                                <Link to={`/payment/${title}`} className="text-center bg-primary hover:bg-orange-600 space-x-1 text-lg font-semibold py-2 px-10 text-white">
                                 Pay
                                 </Link> 
                             }

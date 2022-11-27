@@ -3,13 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
-import toast,{ Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import SocialLogin from './SocialLogin';
 import { jwtToken } from '../API/access-jwt-token';
 import { useTitle } from '../Hook/useTitle';
 
 const Login = () => {
-  useTitle('Login')
+    useTitle('Login')
     const { register, handleSubmit,formState: { errors } } = useForm();
     const navigate = useNavigate()
     const location = useLocation()

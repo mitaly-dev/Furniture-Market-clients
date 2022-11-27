@@ -50,6 +50,9 @@ const BookingModal = ({product,setBookingModalData}) => {
                 <label htmlFor={`booking-modal${_id}`} className="btn btn-sm btn-circle bg-primary absolute right-2 top-2">✕</label>
                 <h3 className="text-lg font-bold">{}</h3>
                 <div>
+                   <div className='text-center'>
+                   <span className='mb-5 border-b-2 pb-2 border-b-primary inline-block font-semibold text-xl'>{title}</span>
+                   </div>
                     <form onSubmit={handleSubmit(bookingHandle)} className="space-y-3 ng-untouched ng-pristine ng-valid">
                             <div className=" text-sm">
                                 <label className="block mb-1 font-medium text-[16px]">Name</label>

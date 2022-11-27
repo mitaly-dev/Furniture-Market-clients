@@ -15,6 +15,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/Sellers/AddProduct/AddProduct";
 import MyBuyers from "../Pages/Dashboard/Sellers/MyBuyers/MyBuyers";
 import MyProducts from "../Pages/Dashboard/Sellers/MyProducts/MyProducts";
+import SentRequest from "../Pages/Dashboard/SentRequest/SentRequest";
 import Errorpage from "../Pages/Errorpage";
 import Home from "../Pages/Home/Home";
 import Login from "../Users/Login";
@@ -64,6 +65,7 @@ export const router = createBrowserRouter([
             {path:'/dashboard/myOrders',element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>},
             {path:'/dashboard/myWishList',element:<PrivateRoute><WishList></WishList></PrivateRoute>},
             {path:'/dashboard/myBuyers',element:<SellerRoute><MyBuyers></MyBuyers></SellerRoute>},
+            {path:'/dashboard/sentRequest',element:<PrivateRoute><SentRequest></SentRequest></PrivateRoute>},
         ]
     }
 ])
