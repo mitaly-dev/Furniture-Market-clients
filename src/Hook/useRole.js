@@ -12,7 +12,6 @@ export const useRole = (email) => {
             fetch(`${process.env.REACT_APP_PORT}/verifyRole?email=${email}`)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
                 setIsRoleLoading(false)
                 setRole(data?.role)
                 setIsVerify(data.verify)
@@ -20,7 +19,6 @@ export const useRole = (email) => {
             })
             .catch(error=>{
                 setIsRoleLoading(false)
-                console.log(error.message)
             })
         }
     },[email])

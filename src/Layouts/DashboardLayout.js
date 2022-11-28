@@ -34,9 +34,6 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
                     <ul className="menu p-4 space-y-0 w-80 bg-base-100 text-base-content text-lg font-semibold pl-16 font-jost capitalize">
-                    <li className='sm:hidden'>
-                    <label htmlFor="my-drawer-2" className="btn btn-sm btn-circle bg-primary mb-10">✕</label>
-                    </li>
                     {
                         user?.uid && <li>
                         <div className='grid grid-cols-1'>
