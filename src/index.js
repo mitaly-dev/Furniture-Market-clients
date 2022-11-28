@@ -8,9 +8,6 @@ import AuthProvider from './Contexts/AuthProvider';
 
 
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'

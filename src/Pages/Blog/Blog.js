@@ -28,9 +28,9 @@ const Blog = () => {
     }
     
     return (
-        <section className="bg-background min-h-screen items-center">
+        <section className="bg-background min-h-screen items-center" >
             <SectionTop title='Frequently Asked Questions'></SectionTop>
-            <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
+            <div className="container flex flex-col justify-center p-4 mx-auto md:p-8" data-aos="fade-up">
                 <div className="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">
                     {
                         blogs.map(blog=>{

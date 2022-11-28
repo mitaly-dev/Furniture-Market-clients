@@ -9,9 +9,8 @@ const About = () => {
       }, [])
     return (
         <div className="px-4 sm:px-10 lg:px-20 py-16 mx-auto lg:py-20 bg-[#0201010d]">
-           
             <div className="grid gap-12 lg:grid-cols-2 sm:mx-auto font-jost">
-                <div className="relative">
+                <div className="relative" data-aos="fade-right">
                 <img
                     className="object-cover w-full h-full col-span-2 rounded shadow-lg"
                     src="https://i.ibb.co/BPr6Hx5/about.jpg"
@@ -22,8 +21,8 @@ const About = () => {
                     <p className='text-secondary text-xl'>Year Experience</p>
                 </div>
                 </div>
-                <div className="flex flex-col justify-center font-jost text-secondary">
-                <div className='font-jost capitalize'>
+                <div className="flex flex-col justify-center font-jost text-secondary" data-aos="fade-up" >
+                <div className='font-jost capitalize '>
                     <span className='text-primary text-lg italic'>Who we are</span>
                     <p className='text-4xl font-semibold pb-10 text-secondary '>A creation that suits your personality.</p>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Order = ({order}) => {
-const {title,productImg,price,phone,name,location,email,category,_id,paid} = order
+const {title,productImg,price,category,_id,paid} = order
   
     return (
         <li className="flex flex-col py-6 sm:flex-row sm:justify-between">

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {loadStripe} from '@stripe/stripe-js';
 import {
   CardElement,
   Elements,
@@ -10,12 +9,11 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 
 
 const CheckoutForm = ({order}) => {
     const [load,setLoad]=useState(false)
-    const {title,productImg,price,phone,name,location,email,category,_id} = order
+    const {title,productImg,price,name,email,category,_id} = order
     const [clientSecret, setClientSecret] = useState("");
     const [cardError,setCardError] = useState('')
     const [transactionId,settransactionId] = useState('')

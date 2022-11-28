@@ -1,16 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
-import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const BookingModal = ({product,setBookingModalData}) => {
     const navigate=useNavigate()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const {title,location,email:sellerEmail,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image} = product
-    const {user,loading} = useContext(AuthContext)
+    const {title,email:sellerEmail,category,resalePrice,_id,image} = product
+    const {user} = useContext(AuthContext)
 
     const bookingHandle=(data)=>{
         const name = data.name

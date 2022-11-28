@@ -20,7 +20,7 @@ const Products = () => {
     }
     return (
         <section className='px-4 sm:px-10 lg:px-20 py-28 bg-[#FAF8F8]'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' data-aos="fade-up">
           {
            products.map(product=><Product key={product._id} product={product}></Product>)
           }

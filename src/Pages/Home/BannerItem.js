@@ -13,7 +13,7 @@ const BannerItem = ({banner}) => {
                     alt=""
                 />
                 <div className="relative bg-gray-900 bg-opacity-50 min-h-[90vh] font-jost items-center flex px-4 sm:px-10 lg:px-20 ">
-                    <div className="py-16 lg:py-20">
+                    <div className="py-16 lg:py-20" data-aos="fade-right">
                     <div className="">
                         <div className="w-full max-w-xl text-white">
                         <h2 className=" mb-6 font-jost text-3xl font-semibold tracking-tight sm:text-5xl">

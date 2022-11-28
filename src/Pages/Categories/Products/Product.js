@@ -2,21 +2,18 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaCartPlus, FaCross, FaHeart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaArrowRight, FaCartPlus, FaCross, FaHeart } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import BookingModal from './BookingModal';
 
 const Product = ({product}) => {
     const {user} = useContext(AuthContext)
-    const {productRefetch,setProductRefetch} = useContext(AuthContext)
     const [optionOpen,setOptionOpen] = useState(false)
     const [bookingModalData,setBookingModalData]=useState(null)
-    const {title,verify,email,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,available,description} = product
+    const navigate = useNavigate()
+    const {title,verify,email,location,sellerName,time,yearsOfPurchase,condition,category,originalPrice,resalePrice,_id,image,description} = product
 
-    if(!available){
-        return
-    }
 
     const reportHandle=()=>{
         const product={
@@ -75,13 +72,16 @@ const Product = ({product}) => {
         .catch(error=>console.log(error))
     }
 
+    const productDetailsHandle=()=>{
+        navigate('/productDetails',{state:product})
+    }
+
     return (
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md font-jost bg-white">
         <div className="flex space-x-4 justify-between">
-            {/* <img alt="" src={image} className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" /> */}
             <div className="flex flex-col space-y-1">
-                <div className='flex'>
-                <Link rel="noopener noreferrer" to="#" className=" font-semibold capitalize">{sellerName}</Link>
+                <div className='flex items-center'>
+                <p rel="noopener noreferrer" to="#" className=" font-semibold capitalize">{sellerName}</p>
                 {
                     verify && <img src="https://i.ibb.co/D8SPXJg/verified-2.png" alt="" className='w-4 h-4 ml-2' />
                 }
@@ -130,14 +130,17 @@ const Product = ({product}) => {
             <p><span className='font-semibold'>Condition :</span> {condition}</p>
             <p><span className='font-semibold'>Original Price :</span> ${originalPrice}</p>
             <p className='mt-2 font-semibold'>Resale Price <span className='text-red-600 font-semibold text-2xl'>${resalePrice}</span></p>
-            <div className='mt-2'>
+            <div className='flex justify-between items-center'>
                 <label onClick={()=>{
                     setBookingModalData(product)
                     !user?.uid && toast.error('please login first then book product',{duration:1200})
-                }} htmlFor={`booking-modal${_id}`} className="inline-flex items-center font-semibold px-6 py-2 bg-primary hover:bg-orange-600 text-white text-lg mt-5 cursor-pointer">
+                }} htmlFor={`booking-modal${_id}`} className="inline-flex items-center font-semibold px-6 py-2 bg-primary hover:bg-orange-600 text-white text-lg  cursor-pointer mt-7 ">
                 <FaCartPlus className='mr-2'></FaCartPlus>
                     Book Now
                 </label>
+                <button onClick={productDetailsHandle}>
+                <FaArrowRight className='text-primary mt-7 '></FaArrowRight>
+                </button>
             </div>
             {
                 bookingModalData && user?.uid && <BookingModal product={product} setBookingModalData={setBookingModalData}></BookingModal>

@@ -3,8 +3,6 @@ import toast from 'react-hot-toast';
 import { useTitle } from '../../../Hook/useTitle';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
-import useRole from '../../../Hook/useRole';
-import Spinner from '../../../Components/Spinner';
 import { useState } from 'react';
 import { useEffect } from 'react';
 

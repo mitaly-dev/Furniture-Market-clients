@@ -4,6 +4,7 @@ import Main from "../Layouts/Main";
 import About from "../Pages/About/About";
 import Blog from "../Pages/Blog/Blog";
 import Categories from "../Pages/Categories/Categories";
+import ProductDetails from "../Pages/Categories/Products/ProductDetails";
 import Products from "../Pages/Categories/Products/Products";
 import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers/AllSellers";
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
             }
         }),
         element:<Payment></Payment>},
+        {path:'/productDetails',element:<ProductDetails></ProductDetails>}
     ]
     },
     {
