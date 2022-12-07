@@ -14,7 +14,6 @@
 - Buyer can order product and pay 
 - User can logout from his account 
 - Buyer and seller can request to become an admin
-- only admin can apporoved buyer and seller request
 
 ## Technologies :
 - React.js
