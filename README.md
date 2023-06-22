@@ -28,5 +28,4 @@
 - Mongodb
 
 
-### Admin-Email : furniture******@gmail.com
-### Admin-Password : 12345*
+
